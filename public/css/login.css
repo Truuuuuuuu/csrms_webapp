@@ -1,0 +1,80 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            background: #f0f2f5;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Left column for logo */
+        .left {
+            flex: 1;
+            background-color: #007BFF; /* You can change this color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left img {
+            max-width: 70%;
+            max-height: 70%;
+        }
+
+        /* Right column for login form */
+        .right {
+            flex: 1;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            width: 80%;
+            max-width: 350px;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 0; /* Sharp corners */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #00008B;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 0; /* Sharp corners */
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }

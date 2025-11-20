@@ -1,0 +1,39 @@
+body {
+    background-color: #f8f9fa;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 380px;
+}
+
+/* Error msgs styling */
+.wrong-credentials,
+.wrong-password {
+    background-color: #f8d7da;      /* Soft red/pink background */
+    color: #721c24;                 /* Dark red text for contrast */
+    border: 1px solid #f5c6cb;      /* Border matching the background */
+    border-radius: 5px;              /* Rounded corners */
+    padding: 10px 15px;             /* Space inside the box */
+    font-size: 0.95rem;
+    margin-top: 0.5rem;             /* Space above the error */
+    font-weight: 500;
+}
+
+/* Optional: different shades if you want to differentiate */
+.wrong-credentials {
+    background-color: #fff3cd;      /* Soft yellow background */
+    color: #856404;                 /* Dark yellow text */
+    border: 1px solid #ffeeba;
+}
+
+.wrong-password {
+    background-color: #f8d7da;      /* Soft red background */
+    color: #721c24;                 /* Dark red text */
+    border: 1px solid #f5c6cb;
+}
+
+

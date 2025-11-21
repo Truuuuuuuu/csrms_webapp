@@ -3,24 +3,44 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
-    <div class="container mt-5">
-        <h1>Welcome, {{ auth()->user()->username }}!</h1>
-        <p>Your role: {{ auth()->user()->role }}</p>
+    <div class="dashboard-container">
+        <!-- Welcome -->
+        <h1 class="mb-4 text-center">Welcome, {{ auth()->user()->username }}!</h1>
 
-        <div class="mt-4">
-            <a href="{{ route('logout') }}" class="btn btn-danger"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Logout
-            </a>
+        <!-- Dashboard Cards -->
+        <div class="cards-container">
+            <div class="card card-blue">
+                <h3 class="card-title">Total Users</h3>
+                <p class="card-number">{{ $totalUsers }}</p>
+            </div>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
+            <div class="card card-green">
+                <h3 class="card-title">Total Student Records</h3>
+                <p class="card-number">{{ $totalStudents }}</p>
+            </div>
         </div>
 
-        <div class="mt-4">
-            <p>Here you can add admin-specific features and controls.</p>
-            <!-- Example: links to manage users, reports, etc. -->
+
+
+
+        <!-- Users Table -->
+        <div class="table-responsive">
+            <table class="table users-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>{{ $user->username }}</td>
+                            <td>{{ ucfirst($user->role) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

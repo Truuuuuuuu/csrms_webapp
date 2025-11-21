@@ -1,0 +1,157 @@
+/* Admin Dashboard Table */
+body {
+    background-color: #F2F2F2;
+}
+
+.cards-container {
+    display: flex;
+    gap: 20px;
+    /* slightly smaller gap */
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.card {
+    flex: 0 0 280px;      /* fixed width */
+    height: 150px;         /* fixed height if you want */
+    overflow: hidden;      /* prevents card from expanding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertically center content */
+    align-items: center;
+    border-radius: 12px;
+    padding: 20px 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #fff;
+}
+
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.card-number {
+    margin: 0;
+    font-size: 62px;
+    /* smaller number to fit card */
+    font-weight: bold;
+}
+
+/* Card colors */
+.card-blue {
+    background: #3B82F6;
+}
+
+.card-green {
+    background: #10B981;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 600px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        flex: 0 0 90%;
+        margin-bottom: 15px;
+    }
+}
+
+/* Users table */
+.users-table {
+    width: 100%;
+    border-collapse: separate;
+    /* needed for row spacing and rounding */
+    border-spacing: 0;
+    /* remove gap between columns */
+    font-size: 0.95rem;
+    background-color: #f8f9fa;
+}
+
+/* Table header */
+.users-table thead th {
+    background-color: #1f2937;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ADADAD;
+}
+
+/* Table rows */
+.users-table tbody tr {
+    background-color: #ffffff;
+    border-radius: 8px;
+    /* rounded corners */
+    margin-bottom: 8px;
+    /* space between rows */
+    display: table-row;
+    /* keep table layout */
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.users-table tbody tr td {
+    border: 1px solid #ADADAD;
+    /* add border to cells instead */
+}
+
+/* Optional: remove double borders between cells */
+.users-table {
+    border-collapse: collapse;
+    /* if you want a clean single border */
+}
+
+/* Hover effect */
+.users-table tbody tr:hover {
+    background-color: #e5e7eb;
+}
+
+/* Cells */
+.users-table tbody td {
+    padding: 12px 15px;
+}
+
+/* Column width proportion */
+.users-table tbody td:first-child {
+    width: 70%;
+}
+
+.users-table tbody td:last-child {
+    width: 30%;
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .users-table thead {
+        display: none;
+    }
+
+    .users-table tbody td {
+        display: block;
+        width: 100%;
+        text-align: right;
+        position: relative;
+        padding: 8px 12px;
+    }
+
+    .users-table tbody td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+}

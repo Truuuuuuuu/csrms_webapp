@@ -1,39 +1,222 @@
-body {
-    background-color: #f8f9fa;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Full viewport */
+body,
+html {
+    height: 100%;
+    margin: 0;
 }
 
-.card {
-    width: 380px;
+.login-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Left image with fade on right */
+.login-image {
+    flex: 1.5;
+    /* equal width */
+    background: url('../images/login_bg.png') no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+
+.login-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* fade on right edge */
+    width: 50%;
+    /* fade width */
+    height: 100%;
+    background: linear-gradient(to right, rgba(248, 249, 250, 0), rgba(248, 249, 250, 1));
+}
+
+/* Right form */
+.login-form {
+    flex: 1;
+    /* equal width */
+    background-color: #fff;
+    padding: 0 50px;
+}
+
+.form-wrapper {
+    width: 100%;
+}
+
+.login-form h1 {
+    margin-bottom: 30px;
+    font-size: 3rem; /* increase font size */
+    font-weight: 700; /* optional: make it bolder */
+    color: #0d6efd; 
+}
+
+/* Smaller form inputs */
+.form-control-sm {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* username txtfield */
+.username-field {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    /* light gray border */
+    border-radius: 8px;
+    /* smooth rounded corners */
+    background-color: #f8f9fa;
+    /* subtle off-white background */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Focus state */
+.username-field:focus {
+    border-color: #0d6efd;
+    /* primary blue border */
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+    /* soft blue glow */
+    background-color: #fff;
+    /* white background on focus */
+}
+
+/* Placeholder styling */
+.username-field::placeholder {
+    color: #6c757d;
+    /* muted gray text */
+    font-style: italic;
+}
+
+/* Optional: hover effect */
+.username-field:hover {
+    border-color: #86b7fe;
+    /* subtle hover blue */
+}
+
+/* password txtfield */
+.password-field {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    /* light gray border */
+    border-radius: 8px;
+    /* smooth rounded corners */
+    background-color: #f8f9fa;
+    /* subtle off-white background */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Focus state */
+.password-field:focus {
+    border-color: #0d6efd;
+    /* primary blue border */
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+    /* soft blue glow */
+    background-color: #fff;
+    /* white background on focus */
+}
+
+/* Placeholder styling */
+.password-field::placeholder {
+    color: #6c757d;
+    /* muted gray text */
+    font-style: italic;
+}
+
+/* Optional: hover effect */
+.password-field:hover {
+    border-color: #86b7fe;
+    /* subtle hover blue */
+}
+
+/* Floating label wrapper */
+.floating-label {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+/* Input fields */
+.floating-label input {
+    width: 100%;
+    padding: 12px 15px 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Focus state */
+.floating-label input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+    background-color: #fff;
+}
+
+/* Label styling */
+.floating-label label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-style: italic;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* When input is focused or has value */
+.floating-label input:focus+label,
+.floating-label input:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 10px;
+    font-size: 0.8rem;
+    font-style: normal;
+    background-color: #fff;
+    padding: 0 4px;
+    color: #0d6efd;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
 
 /* Error msgs styling */
 .wrong-credentials,
 .wrong-password {
-    background-color: #f8d7da;      /* Soft red/pink background */
-    color: #721c24;                 /* Dark red text for contrast */
-    border: 1px solid #f5c6cb;      /* Border matching the background */
-    border-radius: 5px;              /* Rounded corners */
-    padding: 10px 15px;             /* Space inside the box */
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px 15px;
     font-size: 0.95rem;
-    margin-top: 0.5rem;             /* Space above the error */
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
     font-weight: 500;
+
 }
 
-/* Optional: different shades if you want to differentiate */
 .wrong-credentials {
-    background-color: #fff3cd;      /* Soft yellow background */
-    color: #856404;                 /* Dark yellow text */
+    background-color: #fff3cd;
+    color: #856404;
     border: 1px solid #ffeeba;
 }
 
 .wrong-password {
-    background-color: #f8d7da;      /* Soft red background */
-    color: #721c24;                 /* Dark red text */
+    background-color: #f8d7da;
+    color: #721c24;
     border: 1px solid #f5c6cb;
 }
-
-

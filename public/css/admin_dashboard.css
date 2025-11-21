@@ -68,13 +68,10 @@ body {
     }
 }
 
-/* Users table */
+/* Dashboard Users Table - 2 columns (Username, Role) */
 .users-table {
     width: 100%;
-    border-collapse: separate;
-    /* needed for row spacing and rounding */
-    border-spacing: 0;
-    /* remove gap between columns */
+    border-collapse: collapse;
     font-size: 0.95rem;
     background-color: #f8f9fa;
 }
@@ -84,7 +81,7 @@ body {
     background-color: #1f2937;
     color: #fff;
     font-weight: 600;
-    padding: 12px 15px;
+    padding: 12px 20px;
     text-align: left;
     border: 1px solid #ADADAD;
 }
@@ -92,25 +89,11 @@ body {
 /* Table rows */
 .users-table tbody tr {
     background-color: #ffffff;
-    border-radius: 8px;
-    /* rounded corners */
-    margin-bottom: 8px;
-    /* space between rows */
-    display: table-row;
-    /* keep table layout */
     transition: all 0.2s ease-in-out;
-    cursor: pointer;
 }
 
 .users-table tbody tr td {
     border: 1px solid #ADADAD;
-    /* add border to cells instead */
-}
-
-/* Optional: remove double borders between cells */
-.users-table {
-    border-collapse: collapse;
-    /* if you want a clean single border */
 }
 
 /* Hover effect */
@@ -120,16 +103,21 @@ body {
 
 /* Cells */
 .users-table tbody td {
-    padding: 12px 15px;
+    padding: 12px 20px;
 }
 
-/* Column width proportion */
+/* Column width proportion - 2 columns */
+.users-table thead th:first-child,
 .users-table tbody td:first-child {
-    width: 70%;
+    width: 60%;
+}
+
+.users-table thead th:last-child {
+    width: 40%;
 }
 
 .users-table tbody td:last-child {
-    width: 30%;
+    width: 40%;
     font-weight: 500;
     color: #374151;
 }

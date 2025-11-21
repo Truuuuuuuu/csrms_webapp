@@ -1,0 +1,134 @@
+/* All Users Table - 3 columns (Username, Role, Action) */
+
+/* All Users table */
+.all-users-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background-color: #f8f9fa;
+}
+
+/* Table header */
+.all-users-table thead th {
+    background-color: #1f2937;
+    color: #fff;
+    font-weight: 600;
+    padding: 18px 30px;
+    text-align: left;
+    border: 1px solid #ADADAD;
+}
+
+/* Table rows */
+.all-users-table tbody tr {
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+
+.all-users-table tbody tr td {
+    border: 1px solid #ADADAD;
+}
+
+/* Hover effect */
+.all-users-table tbody tr:hover {
+    background-color: #e5e7eb;
+}
+
+/* Cells */
+.all-users-table tbody td {
+    padding: 18px 30px;
+}
+
+/* Column width proportion - 3 columns */
+.all-users-table thead th:first-child,
+.all-users-table tbody td:first-child {
+    min-width: 200px;
+    width: 35%;
+}
+
+.all-users-table thead th:nth-child(2),
+.all-users-table tbody td:nth-child(2) {
+    min-width: 120px;
+    width: 20%;
+}
+
+.all-users-table thead th:last-child,
+.all-users-table tbody td:last-child {
+    min-width: 250px;
+    width: 45%;
+}
+
+/* Action column */
+.all-users-table thead th:last-child {
+    vertical-align: middle;
+}
+
+.all-users-table tbody td:last-child {
+    font-weight: 500;
+    color: #374151;
+    vertical-align: middle;
+    padding: 18px 30px;
+}
+
+.all-users-table tbody td:last-child .action-buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Action buttons */
+.action-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.action-btn.remove {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.action-btn.remove:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+.action-btn.update {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.action-btn.update:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .all-users-table thead {
+        display: none;
+    }
+
+    .all-users-table tbody td {
+        display: block;
+        width: 100%;
+        text-align: right;
+        position: relative;
+        padding: 8px 12px;
+    }
+
+    .all-users-table tbody td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+}
+

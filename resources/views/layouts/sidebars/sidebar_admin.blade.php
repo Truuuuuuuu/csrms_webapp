@@ -4,14 +4,14 @@
     </div>
 
     <ul class="sidebar-menu">
-        
+
         <li>
             <a href="{{ route('admin.dashboard') }}"
                 class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <i class="bi bi-speedometer2"></i> Dashboard
             </a>
         </li>
-        
+
         <li>
             <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <i class="bi bi-clipboard-data"></i> Student Records
@@ -19,24 +19,26 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="{{ route('admin.users') }}" 
+               class="{{ request()->routeIs('admin.users*') ? 'active' : '' }}">
                 <i class="bi bi-people"></i> All Users
             </a>
         </li>
 
+
         <li>
-            <a href="#">
+            <a href="{{ route('profile.index') }}" 
+               class="{{ request()->routeIs('profile*') ? 'active' : '' }}">
                 <i class="bi bi-person-circle"></i> Profile
             </a>
         </li>
 
-        
+
     </ul>
 
     {{-- Logout at bottom --}}
     <div class="sidebar-logout mt-auto px-3">
-        <a href="{{ route('logout') }}" class="btn btn-danger w-100"
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <a href="{{ route('logout') }}" class="btn btn-danger w-100" onclick="event.preventDefault(); confirmLogout();">
             <i class="bi bi-box-arrow-right"></i> Logout
         </a>
 
@@ -44,4 +46,5 @@
             @csrf
         </form>
     </div>
+
 </nav>

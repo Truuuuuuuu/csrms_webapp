@@ -9,10 +9,16 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    @if(auth()->user()->role === 'admin')
-        <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
-    @endif
+    @auth
+        @if(in_array(auth()->user()->role, ['admin', 'editor', 'viewer']))
+            <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+        @endif
+        @if(auth()->user()->role === 'admin')
+            <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
+        @endif
+    @endauth
+
+    @stack('styles')
 
 </head>
 
@@ -42,3 +48,5 @@
 </body>
 
 </html>
+
+<script src="{{ asset('js/logout.js') }}"></script>

@@ -55,6 +55,17 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Prevent back navigation to protected pages after logout
+        if (window.history && window.history.pushState) {
+            // Replace current history entry to prevent back navigation
+            window.history.replaceState(null, null, window.location.href);
+            window.addEventListener('popstate', function(event) {
+                // If user tries to go back, replace with current page
+                window.history.replaceState(null, null, window.location.href);
+            });
+        }
+    </script>
 </body>
 
 </html>

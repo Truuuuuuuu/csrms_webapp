@@ -29,7 +29,7 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 // -------------------------
 
 // Admin-only
-Route::middleware([RoleChecker::class . ':admin'])->group(function () {
+Route::middleware([RoleChecker::class . ':admin', 'no.cache'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
         ->name('admin.dashboard');
 
@@ -42,19 +42,19 @@ Route::middleware([RoleChecker::class . ':admin'])->group(function () {
 });
 
 // Editor + Admin
-Route::middleware([RoleChecker::class . ':editor,admin'])->group(function () {
+Route::middleware([RoleChecker::class . ':editor,admin', 'no.cache'])->group(function () {
     Route::get('/editor/dashboard', [EditorDashboardController::class, 'index'])
         ->name('editor.dashboard');
 });
 
 // Viewer + Admin
-Route::middleware([RoleChecker::class . ':viewer,admin'])->group(function () {
+Route::middleware([RoleChecker::class . ':viewer,admin', 'no.cache'])->group(function () {
     Route::get('/viewer/dashboard', [ViewerDashboardController::class, 'index'])
         ->name('viewer.dashboard');
 });
 
 // Generic dashboard for all authenticated roles
-Route::middleware([RoleChecker::class . ':viewer,editor,admin'])->group(function () {
+Route::middleware([RoleChecker::class . ':viewer,editor,admin', 'no.cache'])->group(function () {
     Route::get('/dashboard', function () {
         $user = auth()->user();
 
@@ -74,7 +74,7 @@ Route::middleware([RoleChecker::class . ':viewer,editor,admin'])->group(function
 });
 
 // Profile routes - accessible to all authenticated users
-Route::middleware([RoleChecker::class . ':viewer,editor,admin'])->group(function () {
+Route::middleware([RoleChecker::class . ':viewer,editor,admin', 'no.cache'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 });
 

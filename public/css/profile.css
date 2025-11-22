@@ -3,7 +3,8 @@
 .profile-container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem;  
+    margin-top: 15vh;
 }
 
 .profile-header {

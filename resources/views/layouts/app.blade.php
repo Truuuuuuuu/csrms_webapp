@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>@yield('title', 'My App')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -45,6 +48,18 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        // Prevent browser from caching authenticated pages
+        if (window.history && window.history.pushState) {
+            // Clear any cached pages when navigating
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted) {
+                    // Page was loaded from cache, reload it
+                    window.location.reload();
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

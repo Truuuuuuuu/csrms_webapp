@@ -10,6 +10,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 30px;
+    margin-top: 40px;
 }
 
 .card {
@@ -18,13 +19,37 @@ body {
     overflow: hidden;      /* prevents card from expanding */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* vertically center content */
-    align-items: center;
+    justify-content: space-between;
     border-radius: 12px;
     padding: 20px 25px;
-    text-align: center;
+    position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: #fff;
+}
+
+.card-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    text-align: right;
 }
 
 
@@ -34,16 +59,21 @@ body {
 }
 
 .card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 14px;
+    margin: 0;
+    margin-top: 12px;
     font-weight: 500;
+    opacity: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
 }
 
 .card-number {
     margin: 0;
-    font-size: 62px;
-    /* smaller number to fit card */
-    font-weight: bold;
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1;
 }
 
 /* Card colors */
@@ -66,80 +96,135 @@ body {
         flex: 0 0 90%;
         margin-bottom: 15px;
     }
+
+    .card-icon {
+        font-size: 2.5rem;
+        margin-right: 15px;
+    }
+
+    .card-number {
+        font-size: 2rem;
+    }
+
+    .card-title {
+        font-size: 12px;
+    }
 }
 
-/* Dashboard Users Table - 2 columns (Username, Role) */
+
+/* Wrapper */
+.users-table-wrapper {
+    margin-top: 30px;
+    padding: 0 10px;
+}
+
+/* Table */
 .users-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 5px; /* row spacing */
     font-size: 0.95rem;
-    background-color: #f8f9fa;
 }
 
-/* Table header */
+/* Header row styled like tbody rows */
+.users-table thead tr {
+    background: #1A2A80;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+}
+
+/* Header cells */
 .users-table thead th {
-    background-color: #1f2937;
-    color: #fff;
-    font-weight: 600;
-    padding: 12px 20px;
+    padding: 14px 20px;
+    font-weight: 700;
+    color: white;
     text-align: left;
-    border: 1px solid #ADADAD;
 }
 
-/* Table rows */
+/* Rounded corners for header row */
+.users-table thead th:first-child {
+    border-radius: 8px 0 0 8px;
+}
+.users-table thead th:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+/* Body rows */
 .users-table tbody tr {
-    background-color: #ffffff;
-    transition: all 0.2s ease-in-out;
+    background: #ffffff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border-radius: 8px;
 }
 
-.users-table tbody tr td {
-    border: 1px solid #ADADAD;
+/* Alternating row colors */
+.users-table tbody tr:nth-child(odd) {
+    background: #ffffff;
 }
 
-/* Hover effect */
-.users-table tbody tr:hover {
-    background-color: #e5e7eb;
+.users-table tbody tr:nth-child(even) {
+    background: #dddddf;
+}
+
+/* Rounded corners */
+.users-table tbody td:first-child {
+    border-radius: 8px 0 0 8px;
+}
+.users-table tbody td:last-child {
+    border-radius: 0 8px 8px 0;
 }
 
 /* Cells */
 .users-table tbody td {
-    padding: 12px 20px;
+    padding: 14px 20px;
 }
 
-/* Column width proportion - 2 columns */
-.users-table thead th:first-child,
-.users-table tbody td:first-child {
-    width: 60%;
+/* Hover */
+.users-table tbody tr:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-.users-table thead th:last-child {
-    width: 40%;
+/* Role badges */
+.role-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: inline-block;
 }
 
-.users-table tbody td:last-child {
-    width: 40%;
-    font-weight: 500;
-    color: #374151;
+.role-admin {
+    background: #2563eb22;
+    color: #2563eb;
+}
+.role-editor {
+    background: #d9770622;
+    color: #d97706;
+}
+.role-viewer {
+    background: #05966922;
+    color: #059669;
 }
 
-/* Responsive for mobile */
+/* Mobile */
 @media (max-width: 768px) {
     .users-table thead {
         display: none;
     }
 
-    .users-table tbody td {
+    .users-table tbody tr {
         display: block;
-        width: 100%;
-        text-align: right;
-        position: relative;
-        padding: 8px 12px;
+    }
+
+    .users-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 16px;
     }
 
     .users-table tbody td::before {
         content: attr(data-label);
-        float: left;
         font-weight: 600;
-        text-transform: uppercase;
+        color: #4b5563;
     }
 }

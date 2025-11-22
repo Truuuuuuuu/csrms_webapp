@@ -1,5 +1,6 @@
-/* All Users Table - 3 columns (Username, Role, Action) */
-
+body{
+    background-color: #F2F2F2;
+}
 /* All Users table */
 .all-users-table {
     width: 100%;

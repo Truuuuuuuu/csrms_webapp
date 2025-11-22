@@ -4,22 +4,29 @@
 
 @section('content')
     <div class="dashboard-container">
-        <!-- Welcome -->
-        <h1 class="mb-4 text-center">Welcome, {{ auth()->user()->username }}!</h1>
 
         <!-- Dashboard Cards -->
         <div class="cards-container">
             <div class="card card-blue">
+                <div class="card-top">
+                    <div class="card-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <p class="card-number">{{ $totalUsers }}</p>
+                </div>
                 <h3 class="card-title">Total Users</h3>
-                <p class="card-number">{{ $totalUsers }}</p>
             </div>
 
             <div class="card card-green">
+                <div class="card-top">
+                    <div class="card-icon">
+                        <i class="bi bi-journal-text"></i>
+                    </div>
+                    <p class="card-number">{{ $totalStudents }}</p>
+                </div>
                 <h3 class="card-title">Total Student Records</h3>
-                <p class="card-number">{{ $totalStudents }}</p>
             </div>
         </div>
-
 
 
 

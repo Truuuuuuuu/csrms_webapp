@@ -19,7 +19,7 @@
         </li>
 
         <li>
-            <a href="{{ route('admin.users') }}" 
+            <a href="{{ route('admin.users.index') }}" 
                class="{{ request()->routeIs('admin.users*') ? 'active' : '' }}">
                 <i class="bi bi-people"></i> All Users
             </a>

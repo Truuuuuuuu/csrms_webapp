@@ -32,7 +32,7 @@
 
         <!-- Users Table -->
         <div class="table-responsive">
-            <table class="table users-table">
+            <table class="users-table">
                 <thead>
                     <tr>
                         <th>Username</th>

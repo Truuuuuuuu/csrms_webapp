@@ -40,7 +40,7 @@
 
                     <div class="d-flex gap-2">
                         <button type="submit" class="btn btn-primary">Update Password</button>
-                        <a href="{{ route('admin.users') }}" class="btn btn-secondary">Cancel</a>
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </form>
             </div>

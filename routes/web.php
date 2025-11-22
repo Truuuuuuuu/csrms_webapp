@@ -8,6 +8,7 @@ use App\Http\Controllers\Viewer\ViewerDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleChecker;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminUserController;
 // -------------------------
 // Redirect root to login
 // -------------------------
@@ -20,7 +21,7 @@ Route::get('/', function () {
 // -------------------------
 Route::get('/login', [AuthController::class, 'showLogin'])
     ->name('auth.login')
-    ->middleware('no.cache'); 
+    ->middleware('no.cache');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
@@ -32,13 +33,6 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::middleware([RoleChecker::class . ':admin', 'no.cache'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
         ->name('admin.dashboard');
-
-     // All Users page
-    Route::get('/admin/users', function () {
-        // Optional: pass users if needed
-        $users = \App\Models\User::all(); 
-        return view('admin.admin_all_users', compact('users'));
-    })->name('admin.users');
 });
 
 // Editor + Admin
@@ -83,5 +77,12 @@ Route::middleware([RoleChecker::class . ':admin', 'no.cache'])->group(function (
     Route::get('/admin/users/{id}/edit', [AdminDashboardController::class, 'editUser'])->name('admin.users.edit');
     Route::get('/admin/users/{id}/change-password', [AdminDashboardController::class, 'showChangePassword'])->name('admin.users.change_password');
     Route::post('/admin/users/{id}/change-password', [AdminDashboardController::class, 'changePassword'])->name('admin.users.change_password.post');
+    // All Users Page + Search
+    Route::get('/admin/users', [AdminUserController::class, 'index'])
+        ->name('admin.users.index');
+    Route::post('/admin/users', [AdminUserController::class, 'store'])
+        ->name('admin.users.store');
+
+
 });
 

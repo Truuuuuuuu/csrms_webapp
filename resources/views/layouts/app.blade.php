@@ -9,7 +9,9 @@
     <meta http-equiv="Expires" content="0">
     <title>@yield('title', 'My App')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     @auth
@@ -47,6 +49,7 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         // Prevent browser from caching authenticated pages
@@ -60,6 +63,7 @@
             });
         }
     </script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -20,31 +20,49 @@
 
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form method="POST" action="{{ route('admin.users.change_password.post', $user->id) }}">
+                <form action="{{ route('admin.users.change_password.post') }}" method="POST">
                     @csrf
+                    {{-- Hidden input to hold the user ID --}}
+                    <input type="hidden" name="user_id" value="{{ old('user_id') }}">
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label">New Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" 
-                               id="password" name="password" required>
-                        @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="password" class="form-label">New Password</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password_confirmation" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" name="password_confirmation" required>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="password_confirmation" class="form-label">Confirm New Password</label>
-                        <input type="password" class="form-control" 
-                               id="password_confirmation" name="password_confirmation" required>
-                    </div>
-
-                    <div class="d-flex gap-2">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Update Password</button>
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
 @endsection
 
+{{-- Change Password Modal Auto-Open Script --}}
+@push('scripts')
+    <script>
+        @if($errors->any() && old('user_id'))
+            document.addEventListener('DOMContentLoaded', function () {
+                var modal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+                modal.show();
+
+                // Populate user_id hidden input with old value
+                modal.querySelector('input[name="user_id"]').value = "{{ old('user_id') }}";
+
+                // Optionally update modal title if you also pass old('username')
+                @if(old('username'))
+                    modal.querySelector('.modal-title').textContent = "Change Password for {{ old('username') }}";
+                @endif
+                });
+        @endif
+    </script>
+@endpush

@@ -69,3 +69,4 @@
 </html>
 
 <script src="{{ asset('js/logout.js') }}"></script>
+

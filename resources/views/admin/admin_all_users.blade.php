@@ -18,13 +18,8 @@
 
         {{-- Search Bar --}}
         <form method="GET" action="{{ route('admin.users.index') }}" class="search-container mb-4">
-            <input 
-                type="text" 
-                name="search" 
-                placeholder="Search by username or role..."
-                value="{{ request('search') }}"
-                class="search-input"
-            >
+            <input type="text" name="search" placeholder="Search by username or role..." value="{{ request('search') }}"
+                class="search-input">
             <button type="submit" class="search-btn">Search</button>
             @if(request('search'))
                 <a href="{{ route('admin.users.index') }}" class="clear-btn">Clear</a>
@@ -48,7 +43,8 @@
                                 <td>{{ ucfirst($user->role) }}</td>
                                 <td>
                                     <div class="action-buttons-container">
-                                        <form action="{{ route('admin.users.remove', $user->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ route('admin.users.remove', $user->id) }}" method="POST"
+                                            style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="action-btn remove" title="Remove user">
@@ -56,9 +52,12 @@
                                             </button>
                                         </form>
 
-                                        <a href="{{ route('admin.users.change_password', $user->id) }}" class="action-btn update">
+                                        <a href="#" class="action-btn update" data-bs-toggle="modal"
+                                            data-bs-target="#changePasswordModal" data-user-id="{{ $user->id }}"
+                                            data-username="{{ $user->username }}">
                                             Change Password
                                         </a>
+
                                     </div>
                                 </td>
                             </tr>
@@ -76,6 +75,9 @@
         @include('components.admin.floating-add-button')
         @include('components.admin.add-user-modal')
         @include('components.admin.modal-script')
+        @include('components.admin.change-password-modal')
+
+        <script src="{{ asset('js/admin_users.js') }}"></script>
 
     </div>
 @endsection

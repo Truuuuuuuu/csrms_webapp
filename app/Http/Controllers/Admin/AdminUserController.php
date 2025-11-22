@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -17,9 +18,13 @@ class AdminUserController extends Controller
 
         $query = User::query();
 
+        $query->where('role', '!=', 'admin');
+
         if (!empty($search)) {
-            $query->where('username', 'LIKE', "%{$search}%")
-                ->orWhere('role', 'LIKE', "%{$search}%");
+            $query->where(function ($q) use ($search) {
+                $q->where('username', 'LIKE', "%{$search}%")
+                    ->orWhere('role', 'LIKE', "%{$search}%");
+            });
         }
 
         $users = $query->orderBy('username')->get();
@@ -39,11 +44,20 @@ class AdminUserController extends Controller
     /**
      * Change password page.
      */
-    public function changePassword($id)
+    public function changePassword(Request $request)
     {
-        $user = User::findOrFail($id);
-        return view('admin.change_password', compact('user'));
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'password' => 'required|string|min:6|confirmed', // password + password_confirmation
+        ]);
+
+        $user = User::find($request->user_id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('admin.users.index')->with('success', 'Password updated successfully.');
     }
+
 
     /**
      * Store a newly created user.

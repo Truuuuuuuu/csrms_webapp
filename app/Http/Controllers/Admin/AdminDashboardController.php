@@ -15,7 +15,7 @@ class AdminDashboardController extends Controller
     public function index()
     {
         // Get all users
-        $users = User::all();
+        $users = User::where('role', '!=', 'admin')->get();
 
         // Total users
         $totalUsers = $users->count();

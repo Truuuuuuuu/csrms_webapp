@@ -75,9 +75,9 @@ Route::middleware([RoleChecker::class . ':viewer,editor,admin', 'no.cache'])->gr
 Route::middleware([RoleChecker::class . ':admin', 'no.cache'])->group(function () {
     Route::delete('/admin/users/{id}', [AdminDashboardController::class, 'removeUser'])->name('admin.users.remove');
     Route::get('/admin/users/{id}/edit', [AdminDashboardController::class, 'editUser'])->name('admin.users.edit');
-    Route::get('/admin/users/{id}/change-password', [AdminDashboardController::class, 'showChangePassword'])->name('admin.users.change_password');
-    Route::post('/admin/users/{id}/change-password', [AdminDashboardController::class, 'changePassword'])->name('admin.users.change_password.post');
-    // All Users Page + Search
+    Route::post('/admin/users/change-password', [AdminUserController::class, 'changePassword'])
+        ->name('admin.users.change_password.post');
+
     Route::get('/admin/users', [AdminUserController::class, 'index'])
         ->name('admin.users.index');
     Route::post('/admin/users', [AdminUserController::class, 'store'])

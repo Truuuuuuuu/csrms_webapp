@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function showLogin()
     {
         if (auth()->check()) {
-            return redirect()->route('dashboard'); 
+            return redirect()->route('dashboard');
         }
         return view('auth.login');
     }
@@ -47,6 +47,7 @@ class AuthController extends Controller
     protected function redirectByRole(User $user)
     {
         switch ($user->role) {
+            case 'superadmin':
             case 'admin':
                 return redirect()->route('admin.dashboard');
             case 'editor':
@@ -55,8 +56,10 @@ class AuthController extends Controller
                 return redirect()->route('viewer.dashboard');
             default:
                 Auth::logout();
+                session()->invalidate(); // Use global session helper
                 return back()->withErrors(['credentials' => 'Invalid role'])->withInput();
         }
     }
+
 
 }

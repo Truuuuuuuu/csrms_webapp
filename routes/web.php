@@ -29,8 +29,8 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 // Role-protected Routes
 // -------------------------
 
-// Admin-only
-Route::middleware([RoleChecker::class . ':admin', 'no.cache'])->group(function () {
+// Super admin / Admin 
+Route::middleware([RoleChecker::class . ':superadmin,admin', 'no.cache'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
         ->name('admin.dashboard');
 });
@@ -52,7 +52,7 @@ Route::middleware([RoleChecker::class . ':viewer,editor,admin', 'no.cache'])->gr
     Route::get('/dashboard', function () {
         $user = auth()->user();
 
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole('admin') || $user->hasRole('superadmin')) {
             return redirect()->route('admin.dashboard');
         }
         if ($user->hasRole('editor')) {

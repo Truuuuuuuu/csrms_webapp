@@ -1,0 +1,44 @@
+using php artisan tinker
+
+
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+User::create([
+    'username' => 'admin1',      
+    'password' => Hash::make('admin111'), 
+    'role' => 'admin',
+]);
+
+
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+User::create([
+    'username' => 'superadmin1',      
+    'password' => Hash::make('superadmin111'), 
+    'role' => 'superadmin',
+]);
+
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+User::create([
+    'username' => 'viewer1',      
+    'password' => Hash::make('viewer111'), 
+    'role' => 'viewer',
+]);
+
+
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+User::create([
+    'username' => 'editor1',      
+    'password' => Hash::make('editor111'), 
+    'role' => 'editor',
+]);

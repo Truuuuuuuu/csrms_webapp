@@ -14,16 +14,25 @@ class AdminDashboardController extends Controller
     // -------------------------
     public function index()
     {
+        $user = auth()->user();
         // Get all users
-        $users = User::where('role', '!=', 'admin')->get();
+        if ($user->role === 'superadmin') {
+            // Superadmin can see all users
+            $users = User::whereNotIn('role', ['superadmin'])->get();
+        } else {
+            // Admin can see all except admin/superadmin
+            $users = User::whereNotIn('role', ['admin', 'superadmin'])->get();
 
+        }
+        //get username
+        $currentUsername = $user->username;
         // Total users
         $totalUsers = $users->count();
 
         // Total student records (assuming role 'student')
         $totalStudents = $users->where('role', 'student')->count();
 
-        return view('admin.admin_dashboard', compact('users', 'totalUsers', 'totalStudents'));
+        return view('admin.admin_dashboard', compact('users', 'totalUsers', 'totalStudents', 'currentUsername'));
     }
 
     // -------------------------

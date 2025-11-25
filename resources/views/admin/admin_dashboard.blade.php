@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="dashboard-container">
-
+        <h2>Welcome, {{ $currentUsername }}</h2>
         <!-- Dashboard Cards -->
         <div class="cards-container">
             <div class="card card-blue">
@@ -49,5 +49,6 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 @endsection

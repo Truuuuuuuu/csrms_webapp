@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     @auth
-        @if(in_array(auth()->user()->role, ['admin', 'editor', 'viewer']))
+        @if(in_array(auth()->user()->role, ['superadmin', 'admin', 'editor', 'viewer']))
             <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
         @endif
-        @if(auth()->user()->role === 'admin')
+        @if(auth()->user()->role === 'admin' || auth()->user()->role === 'superadmin')
             <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
         @endif
     @endauth
@@ -33,7 +33,9 @@
 
         {{-- Sidebar based on user role --}}
         @auth
-            @if(auth()->user()->role === 'admin')
+            @if(auth()->user()->role === 'superadmin')
+                @include('layouts.sidebars.sidebar_admin')
+            @elseif(auth()->user()->role === 'admin')
                 @include('layouts.sidebars.sidebar_admin')
             @elseif(auth()->user()->role === 'editor')
                 @include('layouts.sidebars.sidebar_editor')

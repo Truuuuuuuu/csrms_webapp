@@ -23,7 +23,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Student</th>
-                        <th>Form 137</th>
+                        <th>Academic Records</th>
                         <th>Certification</th>
                         <th>Uploaded By</th>
                         <th>Uploaded At</th>
@@ -36,9 +36,9 @@
                             <td>{{ $record->id }}</td>
                             <td>{{ $record->name ?? 'N/A' }}</td>
                             <td>
-                                @if($record->form_137)
-                                    <a href="{{ asset('storage/pdfs/form137/' . $record->form_137) }}" target="_blank">
-                                        {{ $record->form_137 }}
+                                @if($record->academic_records)
+                                    <a href="{{ asset('storage/pdfs/academic_records/' . $record->academic_records) }}" target="_blank">
+                                        {{ $record->academic_records }}
                                     </a>
                                 @else
                                     -

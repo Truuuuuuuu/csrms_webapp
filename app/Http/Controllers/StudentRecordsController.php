@@ -20,7 +20,7 @@ class StudentRecordsController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255', // student name input
-            'form_137' => 'nullable|file|mimes:pdf|max:2048',
+            'academic_records' => 'nullable|file|mimes:pdf|max:2048',
             'certification' => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
@@ -29,11 +29,11 @@ class StudentRecordsController extends Controller
             'uploaded_by' => Auth::user()->username,
         ];
 
-        if ($request->hasFile('form_137')) {
-            $file = $request->file('form_137');
-            $filename = time() . '_form137_' . $file->getClientOriginalName();
-            $file->storeAs('pdfs/form137', $filename, 'public');
-            $data['form_137'] = $filename;
+        if ($request->hasFile('academic_records')) {
+            $file = $request->file('academic_records');
+            $filename = time() . '_academic_records_' . $file->getClientOriginalName();
+            $file->storeAs('pdfs/academic_records', $filename, 'public');
+            $data['academic_records'] = $filename;
         }
 
         if ($request->hasFile('certification')) {
@@ -51,8 +51,8 @@ class StudentRecordsController extends Controller
     public function destroy(StudentRecord $record)
     {
         // Delete PDFs from storage
-        if ($record->form_137) {
-            Storage::disk('public')->delete('pdfs/form137/' . $record->form_137);
+        if ($record->academic_records) {
+            Storage::disk('public')->delete('pdfs/academic_records/' . $record->academic_records);
         }
 
         if ($record->certification) {

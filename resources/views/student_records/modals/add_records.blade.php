@@ -20,8 +20,8 @@
 
 
                     <div class="mb-3">
-                        <label for="form_137" class="form-label">Form 137 (PDF)</label>
-                        <input type="file" name="form_137" accept="application/pdf" class="form-control">
+                        <label for="academic_records" class="form-label">Academic Records (PDF)</label>
+                        <input type="file" name="academic_records" accept="application/pdf" class="form-control">
                     </div>
 
                     <div class="mb-3">

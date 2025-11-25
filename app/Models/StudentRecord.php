@@ -11,15 +11,15 @@ class StudentRecord extends Model
 
     protected $fillable = [
         'name',           
-        'form_137',
+        'academic_records',
         'certification',
         'uploaded_by',
     ];
 
     // Helpers to get full PDF URLs
-    public function form137Url()
+    public function academic_recordsUrl()
     {
-        return $this->form_137 ? asset('storage/pdfs/' . $this->form_137) : null;
+        return $this->academic_records ? asset('storage/pdfs/' . $this->academic_records) : null;
     }
 
     public function certificationUrl()

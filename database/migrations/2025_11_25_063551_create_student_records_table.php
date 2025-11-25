@@ -11,13 +11,12 @@ return new class extends Migration
         Schema::create('student_records', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('form_137')->nullable(); 
+            $table->string('academic_records')->nullable(); 
             $table->string('certification')->nullable(); 
             $table->string('uploaded_by')->nullable(); 
             $table->timestamps();
 
-            // Foreign key constraint (optional)
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            
         });
     }
 

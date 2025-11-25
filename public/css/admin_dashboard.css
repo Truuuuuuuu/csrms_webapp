@@ -3,49 +3,6 @@ body {
     background-color: #F2F2F2;
 }
 
-/* Username welcome */
-.user-info-card {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    /* full width */
-    background-color: #f8f9fa;
-    padding: 15px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    margin-bottom: 20px;
-    transition: transform 0.2s ease;
-    box-sizing: border-box;
-    /* ensures padding doesn't shrink width */
-}
-
-.user-info-card:hover {
-    transform: translateY(-2px);
-}
-
-.user-avatar {
-    font-size: 35px;
-    color: #0d6efd;
-    margin-right: 20px;
-    flex-shrink: 0;
-}
-
-.user-details h2 {
-    font-weight: bold;
-    margin: 0;
-    font-size: 20px;
-    color: #333;
-}
-
-.user-details p {
-    margin: 2px 0 0 0;
-    color: #555;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-
-
 
 
 /* cards analytics */

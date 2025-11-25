@@ -9,7 +9,7 @@
     <meta http-equiv="Expires" content="0">
     <title>@yield('title', 'My App')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    
+
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
@@ -20,6 +20,9 @@
         @endif
         @if(auth()->user()->role === 'admin' || auth()->user()->role === 'superadmin')
             <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
+        @endif
+        @if(in_array(auth()->user()->role, ['superadmin', 'admin', 'editor', 'viewer']))
+            <link rel="stylesheet" href="{{ asset('css/user_info_card.css') }}">
         @endif
     @endauth
 
@@ -57,7 +60,7 @@
         // Prevent browser from caching authenticated pages
         if (window.history && window.history.pushState) {
             // Clear any cached pages when navigating
-            window.addEventListener('pageshow', function(event) {
+            window.addEventListener('pageshow', function (event) {
                 if (event.persisted) {
                     // Page was loaded from cache, reload it
                     window.location.reload();
@@ -71,4 +74,3 @@
 </html>
 
 <script src="{{ asset('js/logout.js') }}"></script>
-

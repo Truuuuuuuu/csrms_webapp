@@ -9,6 +9,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleChecker;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\StudentRecordsController;
+
 // -------------------------
 // Redirect root to login
 // -------------------------
@@ -67,11 +69,16 @@ Route::middleware([RoleChecker::class . ':viewer,editor,admin', 'no.cache'])->gr
     })->name('dashboard');
 });
 
+//Student records
+Route::middleware(['auth', 'no.cache'])->group(function () {
+    Route::get('/student-records', [StudentRecordsController::class, 'index'])->name('student.records');
+    Route::post('/student-records', [StudentRecordsController::class, 'store'])->name('student.records.store');
+    Route::delete('/student-records/{record}', [StudentRecordsController::class, 'destroy'])->name('student.records.destroy');
+});
 // Profile routes - accessible to all authenticated users
 Route::middleware([RoleChecker::class . ':viewer,editor,admin,superadmin', 'no.cache'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 });
-
 
 /* SIDEBAR ACCESS */
 Route::middleware([RoleChecker::class . ':superadmin,admin', 'no.cache'])->group(function () {

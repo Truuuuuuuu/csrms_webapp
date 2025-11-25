@@ -34,18 +34,11 @@
 
     <div class="d-flex">
 
-        {{-- Sidebar based on user role --}}
+        {{-- Sidebar access on all user role --}}
         @auth
-            @if(auth()->user()->role === 'superadmin')
-                @include('layouts.sidebars.sidebar_admin')
-            @elseif(auth()->user()->role === 'admin')
-                @include('layouts.sidebars.sidebar_admin')
-            @elseif(auth()->user()->role === 'editor')
-                @include('layouts.sidebars.sidebar_editor')
-            @elseif(auth()->user()->role === 'viewer')
-                @include('layouts.sidebars.sidebar_viewer')
-            @endif
+            @include('layouts.sidebars.sidebar')
         @endauth
+
 
         {{-- Main content --}}
         <main class="flex-grow-1 p-4">

@@ -32,14 +32,14 @@ class StudentRecordsController extends Controller
         if ($request->hasFile('form_137')) {
             $file = $request->file('form_137');
             $filename = time() . '_form137_' . $file->getClientOriginalName();
-            $file->storeAs('public/pdfs', $filename);
+            $file->storeAs('pdfs/form137', $filename, 'public');
             $data['form_137'] = $filename;
         }
 
         if ($request->hasFile('certification')) {
             $file = $request->file('certification');
             $filename = time() . '_cert_' . $file->getClientOriginalName();
-            $file->storeAs('public/pdfs', $filename);
+            $file->storeAs('pdfs/certification', $filename, 'public');
             $data['certification'] = $filename;
         }
 
@@ -51,8 +51,14 @@ class StudentRecordsController extends Controller
     public function destroy(StudentRecord $record)
     {
         // Delete PDFs from storage
-        if ($record->form_137) Storage::delete('public/pdfs/' . $record->form_137);
-        if ($record->certification) Storage::delete('public/pdfs/' . $record->certification);
+        if ($record->form_137) {
+            Storage::disk('public')->delete('pdfs/form137/' . $record->form_137);
+        }
+
+        if ($record->certification) {
+            Storage::disk('public')->delete('pdfs/certification/' . $record->certification);
+        }
+
 
         $record->delete();
 

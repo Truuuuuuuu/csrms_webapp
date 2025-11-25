@@ -68,11 +68,12 @@ Route::middleware([RoleChecker::class . ':viewer,editor,admin', 'no.cache'])->gr
 });
 
 // Profile routes - accessible to all authenticated users
-Route::middleware([RoleChecker::class . ':viewer,editor,admin', 'no.cache'])->group(function () {
+Route::middleware([RoleChecker::class . ':viewer,editor,admin,superadmin', 'no.cache'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 });
 
-Route::middleware([RoleChecker::class . ':admin', 'no.cache'])->group(function () {
+/* SIDEBAR ACCESS */
+Route::middleware([RoleChecker::class . ':superadmin,admin', 'no.cache'])->group(function () {
     Route::delete('/admin/users/{id}', [AdminDashboardController::class, 'removeUser'])->name('admin.users.remove');
     Route::get('/admin/users/{id}/edit', [AdminDashboardController::class, 'editUser'])->name('admin.users.edit');
     Route::post('/admin/users/change-password', [AdminUserController::class, 'changePassword'])

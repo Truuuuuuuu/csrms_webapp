@@ -52,6 +52,11 @@
     letter-spacing: 0.5px;
 }
 
+.profile-role-badge.superadmin {
+    background-color: #f91427;
+    color: #fff;
+}
+
 .profile-role-badge.admin {
     background-color: #3b82f6;
     color: #fff;

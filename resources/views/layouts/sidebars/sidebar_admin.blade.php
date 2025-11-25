@@ -19,16 +19,14 @@
         </li>
 
         <li>
-            <a href="{{ route('admin.users.index') }}" 
-               class="{{ request()->routeIs('admin.users*') ? 'active' : '' }}">
+            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users*') ? 'active' : '' }}">
                 <i class="bi bi-people"></i> All Users
             </a>
         </li>
 
 
         <li>
-            <a href="{{ route('profile.index') }}" 
-               class="{{ request()->routeIs('profile*') ? 'active' : '' }}">
+            <a href="{{ route('profile.index') }}" class="{{ request()->routeIs('profile*') ? 'active' : '' }}">
                 <i class="bi bi-person-circle"></i> Account
             </a>
         </li>

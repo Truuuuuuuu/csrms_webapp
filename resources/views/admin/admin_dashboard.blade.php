@@ -4,7 +4,17 @@
 
 @section('content')
     <div class="dashboard-container">
-        <h2>Welcome, {{ $currentUsername }}</h2>
+        <div class="user-info-card">
+            <div class="user-avatar">
+                <i class="bi bi-person-circle"></i>
+            </div>
+            <div class="user-details">
+                <h2>Welcome, {{ $currentUsername }}</h2>
+                <p class="user-role">Role: {{ ucfirst(auth()->user()->role) }}</p>
+            </div>
+        </div>
+
+
         <!-- Dashboard Cards -->
         <div class="cards-container">
             <div class="card card-blue">

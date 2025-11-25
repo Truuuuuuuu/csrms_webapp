@@ -26,9 +26,16 @@ class AdminUserController extends Controller
                     ->orWhere('role', 'LIKE', "%{$search}%");
             });
         }
+        
+        $user = auth()->user();
+        if ($user->role === 'superadmin') {
+            // Superadmin can see all users
+            $users = User::whereNotIn('role', ['superadmin'])->get();
+        } else {
+            // Admin can see all except admin/superadmin
+            $users = User::whereNotIn('role', ['admin', 'superadmin'])->get();
 
-        $users = $query->orderBy('username')->get();
-
+        }
         return view('admin.admin_all_users', compact('users', 'search'));
     }
 

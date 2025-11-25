@@ -11,8 +11,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control @error('username') is-invalid @enderror" 
-                               id="username" name="username" value="{{ old('username') }}" required>
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username"
+                            name="username" value="{{ old('username') }}" required>
                         @error('username')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -20,10 +20,14 @@
 
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
-                        <select class="form-select @error('role') is-invalid @enderror" 
-                                id="role" name="role" required>
+                        <select class="form-select @error('role') is-invalid @enderror" id="role" name="role" required>
                             <option value="">Select a role</option>
-                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+
+                            {{-- Only show Admin if logged-in user is superadmin --}}
+                            @if(auth()->user()->role === 'superadmin')
+                                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                            @endif
+
                             <option value="editor" {{ old('role') == 'editor' ? 'selected' : '' }}>Editor</option>
                             <option value="viewer" {{ old('role') == 'viewer' ? 'selected' : '' }}>Viewer</option>
                         </select>
@@ -32,10 +36,11 @@
                         @enderror
                     </div>
 
+
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" 
-                               id="password" name="password" required>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            id="password" name="password" required>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -43,8 +48,8 @@
 
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" 
-                               id="password_confirmation" name="password_confirmation" required>
+                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                            id="password_confirmation" name="password_confirmation" required>
                         @error('password_confirmation')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -58,4 +63,3 @@
         </div>
     </div>
 </div>
-

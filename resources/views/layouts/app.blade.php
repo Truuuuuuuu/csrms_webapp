@@ -30,7 +30,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/show_records.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fab_addfile.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/student_records_component.css') }}">
+    
 </head>
 
 <body>

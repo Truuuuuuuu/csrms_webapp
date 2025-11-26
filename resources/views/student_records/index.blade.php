@@ -23,8 +23,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Student</th>
-                        <th>Academic Records</th>
-                        <th>Certification</th>
+                        <th>Details</th>
                         <th>Uploaded By</th>
                         <th>Uploaded At</th>
                         <th>Action</th>
@@ -35,25 +34,13 @@
                         <tr>
                             <td>{{ $record->id }}</td>
                             <td>{{ $record->name ?? 'N/A' }}</td>
+                            {{-- View Details Button --}}
                             <td>
-                                @if($record->academic_records)
-                                    <a href="{{ asset('storage/pdfs/academic_records/' . $record->academic_records) }}" target="_blank">
-                                        {{ $record->academic_records }}
-                                    </a>
-                                @else
-                                    -
-                                @endif
+                                <a href="{{ route('student_records.show', $record->id) }}" class="btn btn-info btn-sm">
+                                    View Records
+                                </a>
                             </td>
-                            <td>
-                                @if($record->certification)
-                                    <a href="{{ asset('storage/pdfs/certification/' . $record->certification) }}" target="_blank">
-                                        {{ $record->certification }}
-                                    </a>
-                                @else
-                                    -
-                                @endif
-                            </td>
-                            <td>{{ $record->uploaded_by }}</td>
+                            <td>{{ $record->uploaded_by ?? 'N/A' }}</td>
                             <td>{{ $record->created_at->format('Y-m-d') }}</td>
                             <td>
                                 {{-- Delete Button --}}
@@ -61,7 +48,7 @@
                                     onsubmit="return confirm('Are you sure you want to delete this record?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                    <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</button>
                                 </form>
                             </td>
                         </tr>

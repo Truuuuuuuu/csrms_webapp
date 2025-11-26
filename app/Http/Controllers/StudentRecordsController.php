@@ -16,52 +16,80 @@ class StudentRecordsController extends Controller
         return view('student_records.index', compact('records'));
     }
 
+    protected function handleFiles($files, StudentRecord $record, $type, $path)
+    {
+        if (!$files)
+            return;
+
+        // Wrap single file into array if needed
+        $files = is_array($files) ? $files : [$files];
+
+        foreach ($files as $file) {
+            $filename = time() . "_{$type}_" . $file->getClientOriginalName();
+            $file->storeAs($path, $filename, 'public');
+
+            $record->files()->create([
+                'type' => $type,
+                'filename' => $filename,
+                'uploaded_by' => auth()->user()->username, 
+            ]);
+        }
+    }
+
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255', // student name input
-            'academic_records' => 'nullable|file|mimes:pdf|max:2048',
-            'certification' => 'nullable|file|mimes:pdf|max:2048',
+            'name' => 'required|string|max:255',
+            'academic_records.*' => 'nullable|file|mimes:pdf|max:2048',
+            'certification.*' => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
-        $data = [
+        $record = StudentRecord::create([
             'name' => $request->name,
             'uploaded_by' => Auth::user()->username,
-        ];
+        ]);
 
-        if ($request->hasFile('academic_records')) {
-            $file = $request->file('academic_records');
-            $filename = time() . '_academic_records_' . $file->getClientOriginalName();
-            $file->storeAs('pdfs/academic_records', $filename, 'public');
-            $data['academic_records'] = $filename;
-        }
-
-        if ($request->hasFile('certification')) {
-            $file = $request->file('certification');
-            $filename = time() . '_cert_' . $file->getClientOriginalName();
-            $file->storeAs('pdfs/certification', $filename, 'public');
-            $data['certification'] = $filename;
-        }
-
-        StudentRecord::create($data);
+        // Helper to process files
+        $this->handleFiles($request->file('academic_records'), $record, 'academic', 'pdfs/academic_records');
+        $this->handleFiles($request->file('certification'), $record, 'cert', 'pdfs/certification');
 
         return redirect()->back()->with('success', 'Record uploaded successfully.');
     }
 
+
+    public function update(Request $request, StudentRecord $record)
+    {
+        $request->validate([
+            'academic_records.*' => 'nullable|file|mimes:pdf|max:2048',
+            'certification.*' => 'nullable|file|mimes:pdf|max:2048',
+        ]);
+
+        $this->handleFiles($request->file('academic_records'), $record, 'academic', 'pdfs/academic_records');
+        $this->handleFiles($request->file('certification'), $record, 'cert', 'pdfs/certification');
+
+        return redirect()->back()->with('success', 'Files uploaded successfully.');
+    }
+
+
     public function destroy(StudentRecord $record)
     {
-        // Delete PDFs from storage
-        if ($record->academic_records) {
-            Storage::disk('public')->delete('pdfs/academic_records/' . $record->academic_records);
-        }
+        foreach ($record->files as $file) {
+            $path = $file->type === 'academic'
+                ? 'pdfs/academic_records/' . $file->file_name
+                : 'pdfs/certification/' . $file->file_name;
 
-        if ($record->certification) {
-            Storage::disk('public')->delete('pdfs/certification/' . $record->certification);
+            Storage::disk('public')->delete($path);
+            $file->delete();
         }
-
 
         $record->delete();
 
         return redirect()->back()->with('success', 'Record deleted successfully.');
     }
+
+    public function show(StudentRecord $record)
+    {
+        return view('student_records.show_records', compact('record'));
+    }
+
 }

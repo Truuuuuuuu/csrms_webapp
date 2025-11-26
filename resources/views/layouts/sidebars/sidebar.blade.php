@@ -22,7 +22,7 @@
 
         <!-- STUDENT RECORDS -->
         <li>
-            <a href="{{ route('student.records') }}" class="{{ request()->routeIs('student.records') ? 'active' : '' }}">
+            <a href="{{ route('student.records') }}" class="{{ request()->routeIs('student.records','student_records.show') ? 'active' : '' }}">
                 <i class="bi bi-clipboard-data"></i> Student Records
             </a>
         </li>

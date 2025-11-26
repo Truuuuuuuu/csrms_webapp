@@ -95,3 +95,18 @@ Route::middleware([RoleChecker::class . ':superadmin,admin', 'no.cache'])->group
 
 });
 
+
+
+
+
+
+
+Route::get('/student-records/{record}', [StudentRecordsController::class, 'show'])
+    ->name('student_records.show');
+
+Route::post('/student-records/upload/{record}', [StudentRecordsController::class, 'update'])
+    ->name('student.records.upload');
+
+
+Route::delete('/student-files/{file}', [StudentRecordsController::class, 'destroy'])->name('student.files.destroy');
+

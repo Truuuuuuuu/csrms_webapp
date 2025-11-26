@@ -28,6 +28,9 @@
 
     @stack('styles')
 
+    <link rel="stylesheet" href="{{ asset('css/show_records.css') }}">
+
+
 </head>
 
 <body>

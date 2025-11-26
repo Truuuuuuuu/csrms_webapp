@@ -10,20 +10,24 @@ class StudentRecord extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',           
-        'academic_records',
-        'certification',
+        'name',
         'uploaded_by',
     ];
 
-    // Helpers to get full PDF URLs
-    public function academic_recordsUrl()
+    // Relationship: One student record has many files
+    public function files()
     {
-        return $this->academic_records ? asset('storage/pdfs/' . $this->academic_records) : null;
+        return $this->hasMany(StudentFile::class);
     }
 
-    public function certificationUrl()
+    // Helper methods to get files by type
+    public function academicFiles()
     {
-        return $this->certification ? asset('storage/pdfs/' . $this->certification) : null;
+        return $this->files()->where('type', 'academic');
+    }
+
+    public function certFiles()
+    {
+        return $this->files()->where('type', 'cert');
     }
 }

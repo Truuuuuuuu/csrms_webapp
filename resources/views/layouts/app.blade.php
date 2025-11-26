@@ -31,7 +31,8 @@
     <link rel="stylesheet" href="{{ asset('css/show_records.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fab_addfile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/student_records_component.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('css/admin_all_users.css') }}">
+
 </head>
 
 <body>

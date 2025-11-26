@@ -15,29 +15,39 @@ class AdminUserController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-
         $query = User::query();
 
-        $query->where('role', '!=', 'admin');
+        $user = auth()->user();
 
+        // Role filtering: superadmin and admin both cannot see other admins
+        if (in_array($user->role, ['admin'])) {
+            $query->where('role', '!=', 'admin'); 
+        }elseif(in_array($user->role, ['superadmin'])) {
+            $query->where('role', '!=', 'superadmin'); 
+        }
+
+        // Optionally, you can also hide superadmins for admins:
+        if ($user->role === 'admin') {
+            $query->where('role', '!=', 'superadmin'); // hide superadmins for admin
+        }
+
+        // Apply search filter
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->where('username', 'LIKE', "%{$search}%")
                     ->orWhere('role', 'LIKE', "%{$search}%");
             });
         }
-        
-        $user = auth()->user();
-        if ($user->role === 'superadmin') {
-            // Superadmin can see all users
-            $users = User::whereNotIn('role', ['superadmin'])->get();
-        } else {
-            // Admin can see all except admin/superadmin
-            $users = User::whereNotIn('role', ['admin', 'superadmin'])->get();
 
-        }
+        // Pagination + sorting
+        $users = $query->orderBy('created_at', 'desc')
+            ->paginate(5)
+            ->withQueryString();
+
         return view('admin.admin_all_users', compact('users', 'search'));
     }
+
+
 
     /**
      * Remove a user.

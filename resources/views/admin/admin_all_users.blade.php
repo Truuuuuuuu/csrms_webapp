@@ -2,9 +2,6 @@
 
 @section('title', 'All Users')
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/admin_all_users.css') }}">
-@endpush
 
 @section('content')
     <div class="dashboard-container">
@@ -16,15 +13,44 @@
             </div>
         @endif
 
-        {{-- Search Bar --}}
-        <form method="GET" action="{{ route('admin.users.index') }}" class="search-container mb-4">
-            <input type="text" name="search" placeholder="Search by username or role..." value="{{ request('search') }}"
-                class="search-input">
-            <button type="submit" class="search-btn">Search</button>
-            @if(request('search'))
-                <a href="{{ route('admin.users.index') }}" class="clear-btn">Clear</a>
-            @endif
+        {{-- Search Form --}}
+        <form method="GET" action="{{ route('admin.users.index') }}" class="mb-3" id="searchForm">
+            <div class="input-group">
+
+                {{-- Container for input + X button --}}
+                <div class="position-relative flex-grow-1">
+
+                    {{-- Search Input --}}
+                    <input type="text" name="search" value="{{ request('search') }}" class="form-control pe-5"
+                        placeholder="Search by username or role..." id="searchInput">
+
+                    {{-- Clear (X) Button --}}
+                    @if(request('search'))
+                        <button type="button" id="clearSearch"
+                            class="btn position-absolute top-50 end-0 translate-middle-y p-0 me-2"
+                            style="border: none; background: transparent; z-index: 10;">
+                            <i class="bi bi-x" style="font-size: 2rem; cursor: pointer;"></i>
+                        </button>
+                    @endif
+
+                </div>
+
+                {{-- Search Button --}}
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-search"></i> Search
+                </button>
+
+            </div>
         </form>
+
+        {{-- Clear button JS --}}
+        <script>
+            document.getElementById('clearSearch')?.addEventListener('click', function () {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchForm').submit();
+            });
+        </script>
+
 
         <div class="table-card">
             <div class="table-responsive">
@@ -79,5 +105,10 @@
 
         <script src="{{ asset('js/admin_users.js') }}"></script>
 
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-3 text-center">
+        {{ $users->links('pagination::bootstrap-5') }}
     </div>
 @endsection

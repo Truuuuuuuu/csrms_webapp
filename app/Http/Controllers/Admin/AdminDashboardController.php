@@ -15,27 +15,37 @@ class AdminDashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
-        // Get all users
+        $currentUsername = $user->username;
+
+        // Base query
+        $query = User::query();
+
+        // Role filtering
         if ($user->role === 'superadmin') {
-            $users = User::whereNotIn('role', ['superadmin'])
-                ->orderBy('created_at', 'desc') 
-                ->paginate(5); 
-        } else {
-            $users = User::whereNotIn('role', ['admin', 'superadmin'])
-                ->orderBy('created_at', 'desc') 
-                ->paginate(5);
+            // Superadmin sees all except other superadmins
+            $query->where('role', '!=', 'superadmin');
+        } elseif ($user->role === 'admin') {
+            // Admin sees all except admins and superadmins
+            $query->whereNotIn('role', ['admin', 'superadmin']);
         }
 
-        //get username
-        $currentUsername = $user->username;
-        // Total users
-        $totalUsers = $users->count();
+        // Paginate and sort
+        $users = $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
 
-        // Total student records (assuming role 'student')
-        $totalStudents = $users->where('role', 'student')->count();
+        // Total users (after role filtering)
+        $totalUsers = $users->total();
 
-        return view('admin.admin_dashboard', compact('users', 'totalUsers', 'totalStudents', 'currentUsername'));
+        // Total student records (role = student)
+        $totalStudents = User::where('role', 'student')->count();
+
+        return view('admin.admin_dashboard', compact(
+            'users',
+            'totalUsers',
+            'totalStudents',
+            'currentUsername'
+        ));
     }
+
 
     // -------------------------
     // Remove user

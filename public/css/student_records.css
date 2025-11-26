@@ -1,0 +1,127 @@
+/* Wrapper */
+.student-records-wrapper {
+    margin-top: 10px;
+    padding: 0;
+
+}
+
+/* Table */
+.student-records-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    /* row spacing */
+    font-size: 0.95rem;
+}
+
+
+
+/* Header cells */
+.student-records-table thead th {
+    padding: 14px 20px;
+    font-weight: 700;
+    color: white;
+    text-align: left;
+    background: #1A2A80;
+}
+
+/* Rounded corners for header */
+.student-records-table thead th:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+.student-records-table thead th:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+/* Body rows */
+.student-records-table tbody tr {
+    background: #ffffff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border-radius: 8px;
+}
+
+/* Alternating rows */
+.student-records-table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.student-records-table tbody tr:nth-child(even) {
+    background: #dddddf;
+}
+
+/* Rounded corners for body cells */
+.student-records-table tbody td:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+.student-records-table tbody td:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+/* Cells */
+.student-records-table tbody td {
+    padding: 14px 20px;
+}
+
+/* Hover effect */
+.student-records-table tbody tr:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Action buttons inside table */
+.student-records-table tbody td .btn-sm {
+    font-size: 0.85rem;
+}
+
+/* Pagination alignment */
+.pagination {
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .student-records-table thead {
+        display: none;
+    }
+
+    .student-records-table tbody tr {
+        display: block;
+    }
+
+    .student-records-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 16px;
+    }
+
+    .student-records-table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #4b5563;
+    }
+}
+
+/* success banner */
+.success-banner {
+    position: fixed;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    z-index: 1050;
+    transition: top 0.5s ease, opacity 0.5s ease;
+    display: flex;          
+    justify-content: space-between; 
+    align-items: center;   
+    padding: 0.75rem 1rem;
+}
+
+
+.success-banner.showBanner {
+    top: 20px;
+    opacity: 1;
+}

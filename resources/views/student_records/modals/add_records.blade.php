@@ -11,12 +11,15 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label">Student Name</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="AGUILAR, JETHRUEL M." required>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="AGUILAR, JETHRUEL M."
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="uploaded_by" class="form-label">Uploaded By</label>
-                        <input type="text" name="uploaded_by" class="form-control" id="uploaded_by" value="{{ auth()->user()->name }}" readonly>
+                        <input type="text" name="uploaded_by" class="form-control" id="uploaded_by"
+                            value="{{ auth()->user()->name ?? auth()->user()->username }}" readonly>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Add Student</button>

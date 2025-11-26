@@ -6,6 +6,7 @@
 @section('content')
     <div class="dashboard-container">
 
+        <!-- Success banner -->
         @if (session('success'))
             <div id="successBanner" class="alert alert-success alert-dismissible fade show">
                 {{ session('success') }}

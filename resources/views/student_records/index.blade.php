@@ -3,12 +3,14 @@
 @section('title', 'Student Records')
 
 @section('content')
-    <div class="container">
-        <h1 class="mb-4">Student Records</h1>
+    <div class="main-content">
 
         {{-- Success Message --}}
         @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div id="successBanner" class="alert alert-success success-banner">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
 
         {{-- Add Record Button --}}
@@ -16,13 +18,13 @@
             $allowedRoles = ['superadmin', 'admin', 'editor'];
         @endphp
         @if(auth()->check() && in_array(auth()->user()->role, $allowedRoles))
-            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addRecordModal">
-                Add Student Record
+            <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addRecordModal">
+                <i class="bi bi-file-earmark-plus"></i> Add Student Record
             </button>
         @endif
 
         {{-- Search Form --}}
-        <form method="GET" action="{{ route('student.records') }}" class="mb-3" id="searchForm">
+        <form method="GET" action="{{ route('student.records') }}" class="mb-2" id="searchForm">
             <div class="input-group">
 
                 {{-- Container for input + X button --}}
@@ -30,7 +32,7 @@
 
                     {{-- Search Input --}}
                     <input type="text" name="search" value="{{ request('search') }}" class="form-control pe-5"
-                        placeholder="Search by username or role..." id="searchInput">
+                        placeholder="Search by id, name..." id="searchInput">
 
                     {{-- Clear (X) Button --}}
                     @if(request('search'))
@@ -60,9 +62,9 @@
         </script>
 
         {{-- Student Records Table --}}
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead class="table-light">
+        <div class="student-records-wrapper table-responsive">
+            <table class="table table-striped table-bordered student-records-table">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Student</th>
@@ -75,17 +77,16 @@
                 <tbody>
                     @foreach($records as $record)
                         <tr>
-                            <td>{{ $record->id }}</td>
-                            <td>{{ $record->name ?? 'N/A' }}</td>
-                            <td>
-                                <a href="{{ route('student_records.show', $record->id) }}" class="btn btn-success btn-sm">
+                            <td data-label="ID">{{ $record->id }}</td>
+                            <td data-label="Student">{{ $record->name ?? 'N/A' }}</td>
+                            <td data-label="Details">
+                                <a href="{{ route('student_records.show', $record->id) }}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-info-circle me-1"></i> View Records
                                 </a>
-
                             </td>
-                            <td>{{ $record->uploaded_by ?? 'N/A' }}</td>
-                            <td>{{ $record->created_at->format('Y-m-d') }}</td>
-                            <td>
+                            <td data-label="Created By">{{ $record->uploaded_by ?? 'N/A' }}</td>
+                            <td data-label="Uploaded At">{{ $record->created_at->format('Y-m-d') }}</td>
+                            <td data-label="Action">
                                 @if(auth()->check() && in_array(auth()->user()->role, ['superadmin', 'admin', 'editor']))
                                     <form action="{{ route('student.records.destroy', $record->id) }}" method="POST"
                                         onsubmit="return confirm('Are you sure you want to delete this record?');">
@@ -100,11 +101,11 @@
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
         </div>
+
         <!-- Pagination -->
-        <div class="mt-3 text-center" >
+        <div class="mt-3 text-center">
             {{ $records->links('pagination::bootstrap-5') }}
         </div>
 

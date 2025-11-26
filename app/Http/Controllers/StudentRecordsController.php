@@ -63,7 +63,7 @@ class StudentRecordsController extends Controller
         $this->handleFiles($request->file('academic_records'), $record, 'academic', 'pdfs/academic_records');
         $this->handleFiles($request->file('certification'), $record, 'cert', 'pdfs/certification');
 
-        return redirect()->back()->with('success', 'Record uploaded successfully.');
+        return redirect()->back()->with('success', 'Student added successfully.');
     }
 
 

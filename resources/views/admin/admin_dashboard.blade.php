@@ -41,15 +41,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
+                    @forelse($users as $user)
                         <tr>
                             <td>{{ $user->username }}</td>
                             <td>{{ ucfirst($user->role) }}</td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="2" class="text-center text-muted fst-italic">No users found.</td>
+                        </tr>
+                    @endforelse
+
                 </tbody>
             </table>
         </div>
 
     </div>
+    
+    <!-- Pagination -->
+    <div class="mt-3 text-center">
+        {{ $users->links('pagination::bootstrap-5') }}
+    </div>
+
 @endsection

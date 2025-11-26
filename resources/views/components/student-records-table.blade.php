@@ -30,7 +30,7 @@
                         class="btn position-absolute top-50 end-0 translate-middle-y p-0 me-2"
                         style="border: none; background: transparent; z-index: 10;"
                     >
-                        <i class="bi bi-x-circle" style="font-size: 1.2rem; cursor: pointer;"></i>
+                        <i class="bi bi-x" style="font-size: 2.0rem; cursor: pointer;"></i>
                     </button>
                 @endif
             </div>

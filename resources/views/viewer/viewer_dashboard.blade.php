@@ -4,13 +4,12 @@
 
 @section('content')
     <div class="dashboard-container">
-        
+
+        {{-- User Info Card --}}
         @include('components.user-info-card')
 
-        {{-- Student Records Table component --}}
-        <x-student-records-table 
-            :records="$records" 
-            :show-action="false" 
-        />
+        {{-- Student Records Table --}}
+        <x-student-records-table :records="$records" :show-action="true" />
+
     </div>
 @endsection

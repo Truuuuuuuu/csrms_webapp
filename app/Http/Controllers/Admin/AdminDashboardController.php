@@ -17,13 +17,15 @@ class AdminDashboardController extends Controller
         $user = auth()->user();
         // Get all users
         if ($user->role === 'superadmin') {
-            // Superadmin can see all users
-            $users = User::whereNotIn('role', ['superadmin'])->get();
+            $users = User::whereNotIn('role', ['superadmin'])
+                ->orderBy('created_at', 'desc') 
+                ->paginate(5); 
         } else {
-            // Admin can see all except admin/superadmin
-            $users = User::whereNotIn('role', ['admin', 'superadmin'])->get();
-
+            $users = User::whereNotIn('role', ['admin', 'superadmin'])
+                ->orderBy('created_at', 'desc') 
+                ->paginate(5);
         }
+
         //get username
         $currentUsername = $user->username;
         // Total users

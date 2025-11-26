@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label">Student Name</label>
-                        <input type="text" name="name" class="form-control" id="name" required>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="AGUILAR, JETHRUEL M." required>
                     </div>
                     <div class="mb-3">
                         <label for="uploaded_by" class="form-label">Uploaded By</label>

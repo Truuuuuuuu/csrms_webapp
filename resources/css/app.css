@@ -6,6 +6,6 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: Arial, Helvetica, sans-serif;
+    --font-sans: Robot, Arial, Helvetica, sans-serif;
 }
 

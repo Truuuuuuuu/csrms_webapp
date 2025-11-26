@@ -74,3 +74,5 @@
 <script src="{{ asset('js/logout.js') }}"></script>
 
 <script src="{{ asset('js/fab_addfile.js') }}"></script>
+
+<script src="{{ asset('js/success_banner.js') }}"></script>

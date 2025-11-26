@@ -41,7 +41,7 @@ class AdminUserController extends Controller
 
         // Pagination + sorting
         $users = $query->orderBy('created_at', 'desc')
-            ->paginate(5)
+            ->paginate(10)
             ->withQueryString();
 
         return view('admin.admin_all_users', compact('users', 'search'));

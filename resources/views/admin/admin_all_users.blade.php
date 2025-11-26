@@ -7,12 +7,16 @@
     <div class="dashboard-container">
 
         @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div id="successBanner" class="alert alert-success alert-dismissible fade show">
                 {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 
+        {{-- Add User Button --}}
+        <button class="btn btn-success add-user-btn" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            <i class="bi bi-person-plus"></i> Add User
+        </button>
         {{-- Search Form --}}
         <form method="GET" action="{{ route('admin.users.index') }}" class="mb-3" id="searchForm">
             <div class="input-group">
@@ -98,7 +102,6 @@
         </div>
 
         {{-- Components --}}
-        @include('components.admin.floating-add-button')
         @include('components.admin.add-user-modal')
         @include('components.admin.modal-script')
         @include('components.admin.change-password-modal')
@@ -108,7 +111,7 @@
     </div>
 
     <!-- Pagination -->
-    <div class="mt-3 text-center" style="margin-right: 100px;>
+    <div class="mt-3 text-center">
         {{ $users->links('pagination::bootstrap-5') }}
     </div>
 @endsection

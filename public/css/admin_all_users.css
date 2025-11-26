@@ -29,7 +29,7 @@ body {
 
 .search-input:focus {
     border-color: #0d6efd;
-    box-shadow: 0 0 0 3px rgba(13,110,253,0.2);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
     outline: none;
 }
 
@@ -72,7 +72,8 @@ body {
 .all-users-table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 5px; /* row spacing */
+    border-spacing: 0 5px;
+    /* row spacing */
     font-size: 0.95rem;
     table-layout: fixed;
 }
@@ -96,6 +97,7 @@ body {
 .all-users-table thead th:first-child {
     border-radius: 8px 0 0 8px;
 }
+
 .all-users-table thead th:last-child {
     border-radius: 0 8px 8px 0;
 }
@@ -121,6 +123,7 @@ body {
 .all-users-table tbody td:first-child {
     border-radius: 8px 0 0 8px;
 }
+
 .all-users-table tbody td:last-child {
     border-radius: 0 8px 8px 0;
 }
@@ -140,9 +143,17 @@ body {
 }
 
 /* Column widths */
-.all-users-table thead th:first-child { width: 45%; }
-.all-users-table thead th:nth-child(2) { width: 25%; }
-.all-users-table thead th:last-child { width: 30%; }
+.all-users-table thead th:first-child {
+    width: 45%;
+}
+
+.all-users-table thead th:nth-child(2) {
+    width: 25%;
+}
+
+.all-users-table thead th:last-child {
+    width: 30%;
+}
 
 /* Action column */
 .action-buttons-container {
@@ -237,3 +248,28 @@ body {
 .floating-add-btn i {
     font-size: 1.5rem;
 }
+
+.add-user-btn {
+    margin-bottom: 10px;
+}
+
+
+/* Dropp banner success */
+#successBanner {
+    position: fixed;
+    top: -80px;
+    /* start hidden above top */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    z-index: 1050;
+    transition: top 0.5s ease, opacity 0.5s ease;
+}
+
+/* Slide down */
+#successBanner.showBanner {
+    top: 20px;
+    opacity: 1;
+}
+

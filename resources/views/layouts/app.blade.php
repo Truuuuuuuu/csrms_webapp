@@ -29,7 +29,7 @@
     @stack('styles')
 
     <link rel="stylesheet" href="{{ asset('css/show_records.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/fab_addfile.css') }}">
 
 </head>
 
@@ -70,3 +70,5 @@
 </html>
 
 <script src="{{ asset('js/logout.js') }}"></script>
+
+<script src="{{ asset('js/fab-addfile.js') }}"></script>

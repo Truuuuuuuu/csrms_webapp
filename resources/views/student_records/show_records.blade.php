@@ -4,6 +4,15 @@
 
 @section('content')
 
+    @php
+        $allowedRoles = ['superadmin', 'admin', 'editor'];
+    @endphp
+    {{-- Back Button --}}
+    <div class="mb-3">
+        <a href="{{ route('student.records') }}" class="text-decoration-none text-muted">
+            <i class="bi bi-arrow-left me-1"></i> Back
+        </a>
+    </div>
     {{-- Tabs Navigation --}}
     <ul class="nav nav-tabs mb-3" id="recordTabs" role="tablist">
         <li class="nav-item" role="presentation">
@@ -15,6 +24,7 @@
                 type="button" role="tab">Certification</button>
         </li>
     </ul>
+
 
     <div class="tab-content" id="recordTabsContent">
 
@@ -28,11 +38,16 @@
                             <a href="{{ asset('storage/pdfs/academic_records/' . $file->filename) }}" target="_blank">
                                 {{ $file->filename }}
                             </a>
-                            <form action="{{ route('student.files.destroy', $file->id) }}" method="POST" class="m-0">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm">Remove</button>
-                            </form>
+
+
+                            @if(auth()->check() && in_array(auth()->user()->role, $allowedRoles))
+                                <form action="{{ route('student.files.destroy', $file->id) }}" method="POST" class="m-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Remove</button>
+                                </form>
+                            @endif
+
                         </div>
                     @endforeach
                 @else
@@ -52,11 +67,13 @@
                             <a href="{{ asset('storage/pdfs/certification/' . $file->filename) }}" target="_blank">
                                 {{ $file->filename }}
                             </a>
-                            <form action="{{ route('student.files.destroy', $file->id) }}" method="POST" class="m-0">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm">Remove</button>
-                            </form>
+                            @if(auth()->check() && in_array(auth()->user()->role, $allowedRoles))
+                                <form action="{{ route('student.files.destroy', $file->id) }}" method="POST" class="m-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Remove</button>
+                                </form>
+                            @endif
                         </div>
                     @endforeach
                 @else
@@ -75,9 +92,12 @@
     <x-add-file-modal id="addCertModal" title="Upload Certification" inputName="certification"
         action="{{ route('student.records.upload', $record->id) }}" />
 
-    {{-- Floating Add Button --}}
-    <button type="button" class="floating-add-btn" id="floatingAddBtn" title="Add File">
-        <i class="bi bi-plus-lg"></i>
-    </button>
+
+    @if(auth()->check() && in_array(auth()->user()->role, $allowedRoles))
+        {{-- Floating Add Button --}}
+        <button type="button" class="floating-add-btn" id="floatingAddBtn" title="Add File">
+            <i class="bi bi-plus-lg"></i>
+        </button>
+    @endif
 
 @endsection

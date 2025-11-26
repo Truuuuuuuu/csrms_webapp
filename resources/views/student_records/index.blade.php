@@ -12,9 +12,15 @@
         @endif
 
         {{-- Add Record Button --}}
-        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addRecordModal">
-            Add Student Record
-        </button>
+        @php
+            $allowedRoles = ['superadmin', 'admin', 'editor'];
+        @endphp
+        @if(auth()->check() && in_array(auth()->user()->role, $allowedRoles))
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addRecordModal">
+                Add Student Record
+            </button>
+        @endif
+
 
         {{-- Student Records Table --}}
         <div class="table-responsive">
@@ -34,26 +40,30 @@
                         <tr>
                             <td>{{ $record->id }}</td>
                             <td>{{ $record->name ?? 'N/A' }}</td>
-                            {{-- View Details Button --}}
                             <td>
-                                <a href="{{ route('student_records.show', $record->id) }}" class="btn btn-info btn-sm">
-                                    View Records
+                                <a href="{{ route('student_records.show', $record->id) }}" class="btn btn-success btn-sm">
+                                    <i class="bi bi-info-circle me-1"></i> View Records
                                 </a>
+
                             </td>
                             <td>{{ $record->uploaded_by ?? 'N/A' }}</td>
                             <td>{{ $record->created_at->format('Y-m-d') }}</td>
                             <td>
-                                {{-- Delete Button --}}
-                                <form action="{{ route('student.records.destroy', $record->id) }}" method="POST"
-                                    onsubmit="return confirm('Are you sure you want to delete this record?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</button>
-                                </form>
+                                @if(auth()->check() && in_array(auth()->user()->role, ['superadmin', 'admin', 'editor']))
+                                    <form action="{{ route('student.records.destroy', $record->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this record?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                @else
+                                    <span class="text-muted">Unavailable</span>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
     </div>

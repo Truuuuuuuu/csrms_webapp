@@ -108,7 +108,7 @@
     </div>
 
     <!-- Pagination -->
-    <div class="mt-3 text-center">
+    <div class="mt-3 text-center" style="margin-right: 100px;>
         {{ $users->links('pagination::bootstrap-5') }}
     </div>
 @endsection

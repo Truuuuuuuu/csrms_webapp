@@ -9,12 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentRecordsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Get all student records
-        $records = StudentRecord::all();
+        $search = $request->input('search');
+
+        $records = StudentRecord::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('id', 'LIKE', "%{$search}%");
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString(); 
+
         return view('student_records.index', compact('records'));
     }
+
 
     protected function handleFiles($files, StudentRecord $record, $type, $path)
     {
@@ -31,7 +41,7 @@ class StudentRecordsController extends Controller
             $record->files()->create([
                 'type' => $type,
                 'filename' => $filename,
-                'uploaded_by' => auth()->user()->username, 
+                'uploaded_by' => auth()->user()->username,
             ]);
         }
     }

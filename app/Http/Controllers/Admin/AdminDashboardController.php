@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\StudentRecord;
 
 class AdminDashboardController extends Controller
 {
@@ -35,8 +36,8 @@ class AdminDashboardController extends Controller
         // Total users (after role filtering)
         $totalUsers = $users->total();
 
-        // Total student records (role = student)
-        $totalStudents = User::where('role', 'student')->count();
+        // Total student records 
+        $totalStudents = StudentRecord::count();
 
         return view('admin.admin_dashboard', compact(
             'users',

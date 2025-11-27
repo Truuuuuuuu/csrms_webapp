@@ -75,7 +75,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($records as $record)
+                    @forelse($records as $record)
                         <tr>
                             <td data-label="ID">{{ $record->id }}</td>
                             <td data-label="Student">{{ $record->name ?? 'N/A' }}</td>
@@ -88,7 +88,6 @@
                             <td data-label="Uploaded At">{{ $record->created_at->format('Y-m-d') }}</td>
                             <td data-label="Action">
                                 @if(auth()->check() && in_array(auth()->user()->role, ['superadmin', 'admin', 'editor']))
-
                                     {{-- Edit button --}}
                                     <form class="d-inline">
                                         <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
@@ -96,7 +95,6 @@
                                             <i class="bi bi-pencil"></i>
                                         </button>
                                     </form>
-
 
                                     {{-- Delete --}}
                                     <form action="{{ route('student.records.destroy', $record->id) }}" method="POST"
@@ -107,15 +105,18 @@
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
-
                                 @else
                                     <span class="text-muted">Unavailable</span>
                                 @endif
                             </td>
-
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted fst-italic" >No records found.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
+
             </table>
         </div>
 

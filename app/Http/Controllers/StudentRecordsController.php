@@ -13,16 +13,24 @@ class StudentRecordsController extends Controller
     {
         $search = $request->input('search');
 
+        // Fetch records with search and pagination
         $records = StudentRecord::query()
             ->when($search, function ($query) use ($search) {
-                $query->where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('id', 'LIKE', "%{$search}%");
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'LIKE', "%{$search}%")
+                        ->orWhere('id', 'LIKE', "%{$search}%");
+                });
             })
             ->orderBy('created_at', 'desc')
             ->paginate(10)
             ->withQueryString();
 
-        return view('student_records.index', compact('records'));
+        // Ensure we redirect to first page if current page exceeds last page
+        if ($records->currentPage() > $records->lastPage() && $records->lastPage() > 0) {
+            return redirect()->route('student.records', ['search' => $search]);
+        }
+        $totalRecords = $records->total();
+        return view('student_records.index', compact('records', 'totalRecords'));
     }
 
 

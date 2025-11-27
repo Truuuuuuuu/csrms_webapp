@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="{{ asset('css/student_records_component.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin_all_users.css') }}">
     <link rel="stylesheet" href="{{ asset('css/student_records.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/student_records_dashb.css') }}">
+
 
 </head>
 
@@ -77,3 +79,4 @@
 <script src="{{ asset('js/fab_addfile.js') }}"></script>
 
 <script src="{{ asset('js/success_banner.js') }}"></script>
+

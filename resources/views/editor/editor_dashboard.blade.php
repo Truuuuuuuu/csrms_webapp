@@ -11,6 +11,7 @@
         {{-- Student Records Table --}}
         <x-student-records-table 
             :records="$records" 
+            :totalRecords="$records->total()"
             :show-action="true" 
         />
 

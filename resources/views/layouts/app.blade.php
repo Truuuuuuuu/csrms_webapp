@@ -80,3 +80,5 @@
 
 <script src="{{ asset('js/success_banner.js') }}"></script>
 
+<script src="{{ asset('js/conf_del.js') }}"></script>
+

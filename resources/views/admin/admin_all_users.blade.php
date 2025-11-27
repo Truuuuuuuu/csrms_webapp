@@ -75,7 +75,7 @@
                                 <td>
                                     <div class="action-buttons-container">
                                         <form action="{{ route('admin.users.remove', $user->id) }}" method="POST"
-                                            style="display:inline;">
+                                            class="confirm-remove" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="action-btn remove" title="Remove user">

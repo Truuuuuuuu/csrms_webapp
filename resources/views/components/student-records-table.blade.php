@@ -91,7 +91,7 @@
     </div>
 
     {{-- Pagination --}}
-    <div class="pagination mt-3">
+    <div class="mt-3">
         {{ $records->withQueryString()->links('pagination::bootstrap-5') }}
     </div>
 

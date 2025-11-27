@@ -20,7 +20,7 @@ class StudentRecordsController extends Controller
             })
             ->orderBy('created_at', 'desc')
             ->paginate(10)
-            ->withQueryString(); 
+            ->withQueryString();
 
         return view('student_records.index', compact('records'));
     }
@@ -78,6 +78,19 @@ class StudentRecordsController extends Controller
         $this->handleFiles($request->file('certification'), $record, 'cert', 'pdfs/certification');
 
         return redirect()->back()->with('success', 'Files uploaded successfully.');
+    }
+
+    public function updateName(Request $request, StudentRecord $record)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $record->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Student name updated successfully.');
     }
 
 

@@ -88,16 +88,31 @@
                             <td data-label="Uploaded At">{{ $record->created_at->format('Y-m-d') }}</td>
                             <td data-label="Action">
                                 @if(auth()->check() && in_array(auth()->user()->role, ['superadmin', 'admin', 'editor']))
+
+                                    {{-- Edit button --}}
+                                    <form class="d-inline">
+                                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#editRecordModal{{ $record->id }}">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </form>
+
+
+                                    {{-- Delete --}}
                                     <form action="{{ route('student.records.destroy', $record->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this record?');">
+                                        class="d-inline" onsubmit="return confirm('Are you sure you want to delete this record?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
                                     </form>
+
                                 @else
                                     <span class="text-muted">Unavailable</span>
                                 @endif
                             </td>
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -113,5 +128,7 @@
 
     {{-- Include Add Record Modal --}}
     @include('student_records.modals.add_records')
+    @include('student_records.modals.edit_name')
+
 
 @endsection

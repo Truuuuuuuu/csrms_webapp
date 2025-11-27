@@ -74,6 +74,11 @@ Route::middleware(['auth', 'no.cache'])->group(function () {
     Route::get('/student-records', [StudentRecordsController::class, 'index'])->name('student.records');
     Route::post('/student-records', [StudentRecordsController::class, 'store'])->name('student.records.store');
     Route::delete('/student-records/{record}', [StudentRecordsController::class, 'destroy'])->name('student.records.destroy');
+    Route::put(
+        '/student-records/update-name/{record}',
+        [StudentRecordsController::class, 'updateName'])
+        ->name('student.records.updateName');
+
 });
 // Profile routes - accessible to all authenticated users
 Route::middleware([RoleChecker::class . ':viewer,editor,admin,superadmin', 'no.cache'])->group(function () {

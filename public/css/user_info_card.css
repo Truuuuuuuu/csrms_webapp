@@ -1,31 +1,47 @@
-
-/* Username welcome */
+/* Username welcome card */
 .user-info-card {
     display: flex;
     align-items: center;
     width: 100%;
-    /* full width */
-    background-color: #f8f9fa;
     padding: 15px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     margin-bottom: 20px;
     transition: transform 0.2s ease;
     box-sizing: border-box;
-    /* ensures padding doesn't shrink width */
 }
 
 .user-info-card:hover {
     transform: translateY(-2px);
 }
 
+/* Avatar */
 .user-avatar {
     font-size: 35px;
-    color: #0d6efd;
-    margin-right: 20px;
+    margin-right: 0;
     flex-shrink: 0;
 }
 
+/* Role avatar circle */
+.role-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #0d6efd; /* default */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Role Colors */
+.role-avatar.superadmin { background-color: #f91427; }
+.role-avatar.admin { background-color: #3b82f6; }
+.role-avatar.editor { background-color: #10b981; }
+.role-avatar.viewer { background-color: #8b5cf6; }
+
+/* User details */
 .user-details h2 {
     font-weight: bold;
     margin: 0;
@@ -40,4 +56,51 @@
     font-weight: 500;
 }
 
+/* Logout button container */
+.sidebar-logout {
+    flex-shrink: 0;          /* prevent shrinking */
+    margin-left: auto;        /* push container to the right */
+    display: flex;
+    justify-content: center;  /* center button inside container */
+}
 
+/* Logout button */
+.sidebar-logout .btn {
+    display: inline-block;
+    text-align: center;
+
+     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #ec1c1c;
+    /* red text */
+    background-color: transparent;
+    /* keep transparent to match sidebar */
+    border: none;
+    /* remove border if any */
+    text-decoration: none;
+    /* remove underline */
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+
+
+.sidebar-logout {
+    margin-top: auto;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* Hover effect */
+.sidebar-logout .btn:hover {
+    color: #ffffff;
+    /* text becomes white on hover */
+    background-color: #ec1c1c;
+    /* red background on hover */
+    text-decoration: none;
+}

@@ -46,15 +46,5 @@
 
     </ul>
 
-    {{-- Logout at bottom --}}
-    <div class="sidebar-logout mt-auto px-3">
-        <a href="{{ route('logout') }}" class="btn btn-danger w-100" onclick="event.preventDefault(); confirmLogout();">
-            <i class="bi bi-box-arrow-right"></i> Logout
-        </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
-    </div>
-
+    
 </nav>

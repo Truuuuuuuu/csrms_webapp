@@ -87,40 +87,6 @@ body {
 }
 
 
-.sidebar-logout {
-    margin-top: auto;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-/* Sidebar logout button */
-.sidebar-logout .btn {
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    color: #f87171;
-    /* red text */
-    background-color: transparent;
-    /* keep transparent to match sidebar */
-    border: none;
-    /* remove border if any */
-    text-decoration: none;
-    /* remove underline */
-    transition: color 0.3s ease, background-color 0.3s ease;
-    padding: 10px 15px;
-    border-radius: 8px;
-}
-
-/* Hover effect */
-.sidebar-logout .btn:hover {
-    color: #ffffff;
-    /* text becomes white on hover */
-    background-color: #ef44444c;
-    /* red background on hover */
-    text-decoration: none;
-}
 
 
 

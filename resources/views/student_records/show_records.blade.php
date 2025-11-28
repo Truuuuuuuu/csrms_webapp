@@ -25,7 +25,7 @@
         </li>
     </ul>
 
-
+    <h3>{{ $record->name }}</h3>
     <div class="tab-content" id="recordTabsContent">
 
         {{-- Academic Records --}}

@@ -75,6 +75,65 @@
     font-size: 0.85rem;
 }
 
+
+/* --- COLUMN FIXED WIDTHS --- */
+.student-records-table th:nth-child(1),
+.student-records-table td:nth-child(1) { /* ID */
+    width: 120px;         /* ← make ID wider */
+    max-width: 120px;
+}
+
+.student-records-table th:nth-child(2),
+.student-records-table td:nth-child(2) { /* Student Name */
+    width: 270px;         /* ← bigger because names are long */
+    max-width: 270px;
+}
+
+.student-records-table th:nth-child(3),
+.student-records-table td:nth-child(3) { /* Details */
+    width: 100px;
+    max-width: 100px;
+}
+
+.student-records-table th:nth-child(4),
+.student-records-table td:nth-child(4) { /* Created By */
+    width: 120px;         /* just enough for 'superadmin' */
+    max-width: 120px;
+}
+
+.student-records-table th:nth-child(5),
+.student-records-table td:nth-child(5) { /* Uploaded At */
+    width: 130px;         /* fits yyyy-mm-dd */
+    max-width: 130px;
+}
+
+.student-records-table th:nth-child(6),
+.student-records-table td:nth-child(6) { /* Action column */
+    width: 110px;         /* 2 small buttons only */
+    max-width: 110px;
+}
+
+
+/* --- TEXT TRUNCATION WITH "..." --- */
+.student-records-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- SHOW FULL TEXT ON HOVER (tooltip effect) --- */
+.student-records-table td:nth-child(2):hover {
+    overflow: visible;
+    white-space: normal;
+    background: #fff;
+    position: relative;
+    z-index: 20;
+    padding-right: 30px;
+}
+
+
+
+
 /* Pagination alignment */
 .pagination {
     justify-content: center;

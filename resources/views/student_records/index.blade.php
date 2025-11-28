@@ -68,7 +68,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Student</th>
-                        <th>Details</th>
+                        <th>Records</th>
                         <th>Created By</th>
                         <th>Uploaded At</th>
                         <th>Action</th>
@@ -77,15 +77,15 @@
                 <tbody>
                     @forelse($records as $record)
                         <tr>
-                            <td data-label="ID">{{ $record->id }}</td>
-                            <td data-label="Student">{{ $record->name ?? 'N/A' }}</td>
+                            <td data-label="ID" title="{{ $record->id }}">{{ $record->id }}</td>
+                            <td data-label="Student" title="{{ $record->name }}">{{ $record->name ?? 'N/A' }}</td>
                             <td data-label="Details">
                                 <a href="{{ route('student_records.show', $record->id) }}" class="btn btn-primary btn-sm">
-                                    <i class="bi bi-info-circle me-1"></i> View Records
+                                    <i class="bi bi-info-circle me-1"></i> View
                                 </a>
                             </td>
-                            <td data-label="Created By">{{ $record->uploaded_by ?? 'N/A' }}</td>
-                            <td data-label="Uploaded At">{{ $record->created_at->format('Y-m-d') }}</td>
+                            <td data-label="Created By" title="{{ $record->uploaded_by }}">{{ $record->uploaded_by ?? 'N/A' }}</td>
+                            <td data-label="Uploaded At" title="{{ $record->created_at->format('Y-m-d') }}">{{ $record->created_at->format('Y-m-d') }}</td>
                             <td data-label="Action">
                                 @if(auth()->check() && in_array(auth()->user()->role, ['superadmin', 'admin', 'editor']))
                                     {{-- Edit button --}}
@@ -112,7 +112,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-muted fst-italic" >No records found.</td>
+                            <td colspan="6" class="text-center text-muted fst-italic">No records found.</td>
                         </tr>
                     @endforelse
                 </tbody>

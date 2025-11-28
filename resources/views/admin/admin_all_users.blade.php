@@ -100,6 +100,7 @@
                     </tbody>
                 </table>
             </div>
+            <x-pagination :paginator="$users" />
         </div>
 
         {{-- Components --}}
@@ -111,8 +112,5 @@
 
     </div>
 
-    <!-- Pagination -->
-    <div class="mt-3 text-center">
-        {{ $users->links('pagination::bootstrap-5') }}
-    </div>
+    
 @endsection

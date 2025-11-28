@@ -58,9 +58,6 @@
 
     </div>
     
-    <!-- Pagination -->
-    <div class="mt-3 text-center">
-        {{ $users->links('pagination::bootstrap-5') }}
-    </div>
+    <x-pagination :paginator="$users" />
 
 @endsection

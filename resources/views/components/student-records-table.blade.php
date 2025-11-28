@@ -90,9 +90,6 @@
         </table>
     </div>
 
-    {{-- Pagination --}}
-    <div class="mt-3">
-        {{ $records->withQueryString()->links('pagination::bootstrap-5') }}
-    </div>
+    <x-pagination :paginator="$records" />
 
 </div>

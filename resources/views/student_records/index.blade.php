@@ -84,8 +84,11 @@
                                     <i class="bi bi-info-circle me-1"></i> View
                                 </a>
                             </td>
-                            <td data-label="Created By" title="{{ $record->uploaded_by }}">{{ $record->uploaded_by ?? 'N/A' }}</td>
-                            <td data-label="Uploaded At" title="{{ $record->created_at->format('Y-m-d') }}">{{ $record->created_at->format('Y-m-d') }}</td>
+                            <td data-label="Created By" title="{{ $record->uploaded_by }}">{{ $record->uploaded_by ?? 'N/A' }}
+                            </td>
+                            <td data-label="Uploaded At" title="{{ $record->created_at->format('Y-m-d') }}">
+                                {{ $record->created_at->format('Y-m-d') }}
+                            </td>
                             <td data-label="Action">
                                 @if(auth()->check() && in_array(auth()->user()->role, ['superadmin', 'admin', 'editor']))
                                     {{-- Edit button --}}
@@ -120,10 +123,9 @@
             </table>
         </div>
 
-        <!-- Pagination -->
-        <div class="mt-3 text-center">
-            {{ $records->links('pagination::bootstrap-5') }}
-        </div>
+        <x-pagination :paginator="$records" />
+    </div>
+
 
     </div>
 

@@ -3,6 +3,13 @@
 @section('title', 'Student Records')
 
 @section('content')
+    @if(session('success'))
+        <div id="successBanner" class="alert alert-success success-banner">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
 
     @php
         $allowedRoles = ['superadmin', 'admin', 'editor'];
@@ -16,8 +23,8 @@
     {{-- Tabs Navigation --}}
     <ul class="nav nav-tabs mb-3" id="recordTabs" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="academic-tab" data-bs-toggle="tab" data-bs-target="#academicTab"
-                type="button" role="tab">Academic Records</button>
+            <button class="nav-link" id="academic-tab" data-bs-toggle="tab" data-bs-target="#academicTab" type="button"
+                role="tab">Academic Records</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="certification-tab" data-bs-toggle="tab" data-bs-target="#certificationTab"
@@ -31,7 +38,7 @@
     <div class="tab-content" id="recordTabsContent">
 
         {{-- Academic Records --}}
-        <div class="tab-pane fade show active" id="academicTab" role="tabpanel">
+        <div class="tab-pane fade" id="academicTab" role="tabpanel">
 
             <div class="file-preview-box">
                 @if($record->academicFiles->count() > 0)
@@ -46,7 +53,11 @@
                                 <form action="{{ route('student.files.destroy', $file->id) }}" method="POST" class="m-0">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm">Remove</button>
+                                    <button class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this file?')">
+                                        Remove
+                                    </button>
+
                                 </form>
                             @endif
 
@@ -73,7 +84,10 @@
                                 <form action="{{ route('student.files.destroy', $file->id) }}" method="POST" class="m-0">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm">Remove</button>
+                                    <button class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this file?')">
+                                        Remove
+                                    </button>
                                 </form>
                             @endif
                         </div>
@@ -103,3 +117,31 @@
     @endif
 
 @endsection
+
+<!-- prevent going back to 1 tab when action made in 2 tab -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const saved = sessionStorage.getItem('activeTab');
+
+        if (saved) {
+            // Restore previously active tab
+            let tabButton = document.querySelector(`button[data-bs-target="${saved}"]`);
+            if (tabButton) {
+                new bootstrap.Tab(tabButton).show();
+            }
+        } else {
+            // First time: activate Academic tab by default
+            let defaultTab = document.querySelector('button[data-bs-target="#academicTab"]');
+            if (defaultTab) {
+                new bootstrap.Tab(defaultTab).show();
+            }
+        }
+
+        // Save tab when switched
+        document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function (e) {
+                sessionStorage.setItem('activeTab', e.target.getAttribute('data-bs-target'));
+            });
+        });
+    });
+</script>

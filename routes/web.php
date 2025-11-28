@@ -119,5 +119,5 @@ Route::post('/student-records/upload/{record}', [StudentRecordsController::class
     ->name('student.records.upload');
 
 
-Route::delete('/student-files/{file}', [StudentRecordsController::class, 'destroy'])->name('student.files.destroy');
+Route::delete('/student-files/{file}', [StudentRecordsController::class, 'destroyFile'])->name('student.files.destroy');
 

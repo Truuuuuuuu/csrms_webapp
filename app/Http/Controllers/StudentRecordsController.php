@@ -118,6 +118,22 @@ class StudentRecordsController extends Controller
         return redirect()->back()->with('success', 'Record deleted successfully.');
     }
 
+    public function destroyFile($fileId)
+    {
+        $file = \App\Models\StudentFile::findOrFail($fileId);
+
+        $path = $file->type === 'academic'
+            ? 'pdfs/academic_records/' . $file->filename
+            : 'pdfs/certification/' . $file->filename;
+
+        Storage::disk('public')->delete($path);
+
+        $file->delete();
+
+        return redirect()->back()->with('success', 'File removed successfully.');
+    }
+
+
     public function show(StudentRecord $record)
     {
         return view('student_records.show_records', compact('record'));

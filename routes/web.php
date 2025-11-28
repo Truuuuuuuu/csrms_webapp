@@ -21,62 +21,68 @@ Route::get('/', function () {
 // -------------------------
 // Authentication Routes
 // -------------------------
-Route::get('/login', [AuthController::class, 'showLogin'])
-    ->name('auth.login')
-    ->middleware('no.cache');
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
+Route::middleware(['guest', 'no.cache'])->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
+});
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 // -------------------------
 // Role-protected Routes
 // -------------------------
+// Role-protected dashboards
+Route::middleware(['auth', 'no.cache'])->group(function () {
 
-// Super admin / Admin 
-Route::middleware([RoleChecker::class . ':superadmin,admin', 'no.cache'])->group(function () {
-    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
-        ->name('admin.dashboard');
-});
+    // Super admin / Admin
+    Route::middleware([RoleChecker::class . ':superadmin,admin'])->group(function () {
+        Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+            ->name('admin.dashboard');
+    });
 
-// Editor + Admin
-Route::middleware([RoleChecker::class . ':editor,admin', 'no.cache'])->group(function () {
-    Route::get('/editor/dashboard', [EditorDashboardController::class, 'index'])
-        ->name('editor.dashboard');
-});
+    // Editor + Admin
+    Route::middleware([RoleChecker::class . ':editor,admin'])->group(function () {
+        Route::get('/editor/dashboard', [EditorDashboardController::class, 'index'])
+            ->name('editor.dashboard');
+    });
 
-// Viewer + Admin
-Route::middleware([RoleChecker::class . ':viewer,admin', 'no.cache'])->group(function () {
-    Route::get('/viewer/dashboard', [ViewerDashboardController::class, 'index'])
-        ->name('viewer.dashboard');
+    // Viewer + Admin
+    Route::middleware([RoleChecker::class . ':viewer,admin'])->group(function () {
+        Route::get('/viewer/dashboard', [ViewerDashboardController::class, 'index'])
+            ->name('viewer.dashboard');
+    });
+
 });
 
 // Generic dashboard for all authenticated roles
-Route::middleware([RoleChecker::class . ':viewer,editor,admin', 'no.cache'])->group(function () {
-    Route::get('/dashboard', function () {
-        $user = auth()->user();
+Route::get('/dashboard', function () {
+    $user = auth()->user();
 
-        if ($user->hasRole('admin') || $user->hasRole('superadmin')) {
-            return redirect()->route('admin.dashboard');
-        }
-        if ($user->hasRole('editor')) {
-            return redirect()->route('editor.dashboard');
-        }
-        if ($user->hasRole('viewer')) {
-            return redirect()->route('viewer.dashboard');
-        }
+    if ($user->hasRole('superadmin') || $user->hasRole('admin')) {
+        return redirect()->route('admin.dashboard');
+    }
 
-        // fallback, in case role is missing
-        abort(403, 'Unauthorized');
-    })->name('dashboard');
-});
+    if ($user->hasRole('editor')) {
+        return redirect()->route('editor.dashboard');
+    }
+
+    if ($user->hasRole('viewer')) {
+        return redirect()->route('viewer.dashboard');
+    }
+
+    // If user is not authenticated or has no valid role, redirect to login
+    return redirect()->route('auth.login')->with('error', 'You are not authorized to access the dashboard.');
+})->name('dashboard');
+
 
 //Student records
 Route::middleware(['auth', 'no.cache'])->group(function () {
     Route::get('/student-records', [StudentRecordsController::class, 'index'])->name('student.records');
     Route::post('/student-records', [StudentRecordsController::class, 'store'])->name('student.records.store');
     Route::delete('/student-records/{record}', [StudentRecordsController::class, 'destroy'])->name('student.records.destroy');
-        Route::put(
-            '/student-records/update-name/{record}',
-        [StudentRecordsController::class, 'updateName'])
+    Route::put(
+        '/student-records/update-name/{record}',
+        [StudentRecordsController::class, 'updateName']
+    )
         ->name('student.records.updateName');
 
 });

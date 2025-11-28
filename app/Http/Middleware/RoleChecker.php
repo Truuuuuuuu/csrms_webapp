@@ -12,14 +12,15 @@ class RoleChecker
     {
         $user = Auth::user();
         
-        // If user is not authenticated, redirect to login instead of showing 403
+        // If user is not authenticated, redirect to login
         if (!$user) {
-            return redirect()->route('auth.login');
+            Auth::logout();
+            return redirect()->route('auth.login')->with('error', 'Please log in to access this page.');
         }
         
-        // If user is authenticated but doesn't have the required role, show 403
+        // If user is authenticated but doesn't have the required role, redirect to login
         if (!in_array($user->role, $roles)) {
-            abort(403, 'Unauthorized');
+            return redirect()->route('auth.login')->with('error', 'You are not authorized to access this page.');
         }
         
         return $next($request);

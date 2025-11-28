@@ -136,6 +136,29 @@ html {
     /* subtle hover blue */
 }
 
+.password-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.password-field {
+    width: 100%;
+    padding-right: 35px; /* space for eye icon */
+}
+
+
+
+
 /* Floating label wrapper */
 .floating-label {
     position: relative;

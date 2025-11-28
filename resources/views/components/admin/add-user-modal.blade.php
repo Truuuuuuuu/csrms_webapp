@@ -38,19 +38,20 @@
 
 
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            id="password" name="password" required>
-                        @error('password')
+                        <label for="add_password" class="form-label">Password</label>
+                        <input type="password" class="form-control @error('add_password') is-invalid @enderror"
+                            id="add_password" name="add_password" required>
+                        @error('add_password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="mb-3">
-                        <label for="password_confirmation" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
-                            id="password_confirmation" name="password_confirmation" required>
-                        @error('password_confirmation')
+                        <label for="add_password_confirmation" class="form-label">Confirm Password</label>
+                        <input type="password"
+                            class="form-control @error('add_password_confirmation') is-invalid @enderror"
+                            id="add_password_confirmation" name="add_password_confirmation" required>
+                        @error('add_password_confirmation')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -63,3 +64,4 @@
         </div>
     </div>
 </div>
+

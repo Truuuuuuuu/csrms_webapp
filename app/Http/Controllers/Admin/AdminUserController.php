@@ -65,11 +65,11 @@ class AdminUserController extends Controller
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'password' => 'required|string|min:6|confirmed', // password + password_confirmation
+            'change_password' => 'required|string|min:8|confirmed', 
         ]);
 
         $user = User::find($request->user_id);
-        $user->password = Hash::make($request->password);
+        $user->password = Hash::make($request->change_password);
         $user->save();
 
         return redirect()->route('admin.users.index')->with('success', 'Password updated successfully.');
@@ -84,13 +84,13 @@ class AdminUserController extends Controller
         $validated = $request->validate([
             'username' => 'required|string|max:255|unique:users,username',
             'role' => 'required|in:admin,editor,viewer',
-            'password' => 'required|string|min:8|confirmed',
+            'add_password' => 'required|string|min:8|confirmed',
         ]);
 
         User::create([
             'username' => $validated['username'],
             'role' => $validated['role'],
-            'password' => $validated['password'],
+            'password' => $validated['add_password'],
         ]);
 
         return redirect()->route('admin.users.index')->with('success', 'User created successfully.');

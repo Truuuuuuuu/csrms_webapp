@@ -105,12 +105,37 @@
 
         {{-- Components --}}
         @include('components.admin.add-user-modal')
-        @include('components.admin.modal-script')
         @include('components.admin.change-password-modal')
 
         <script src="{{ asset('js/admin_users.js') }}"></script>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                // Only open Change Password modal if its own validation failed
+                @if ($errors->has('change_password') && old('user_id'))
+                    var changeModalEl = document.getElementById('changePasswordModal');
+                    if (changeModalEl) {
+                        var changeModal = new bootstrap.Modal(changeModalEl);
+                        changeModalEl.querySelector('input[name="user_id"]').value = "{{ old('user_id') }}";
+                        changeModal.show();
+                    }
+
+                    // Only open Add User modal if its own validation failed
+                @elseif ($errors->has('add_password') || $errors->has('username') || $errors->has('role'))
+                    var addModalEl = document.getElementById('addUserModal');
+                    if (addModalEl) {
+                        var addModal = new bootstrap.Modal(addModalEl);
+                        addModal.show();
+                    }
+                @endif
+
+    });
+        </script>
+
+
+
     </div>
 
-    
+
 @endsection

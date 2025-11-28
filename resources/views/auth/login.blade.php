@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <! <!-- Bootstrap 5 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -38,14 +40,21 @@
                     @enderror
 
                     <div class="floating-label">
-                        <input type="text" name="username" id="username" class="username-field" placeholder=" " required>
+                        <input type="text" name="username" id="username" class="username-field" placeholder=" "
+                            value="{{ $errors->has('password') ? old('username') : '' }}" required>
                         <label for="username">Username</label>
                     </div>
 
-                    <div class="floating-label">
-                        <input type="password" name="password" id="password" class="password-field" placeholder=" " required>
+                    <div class="floating-label password-container">
+                        <input type="password" name="password" id="password" class="password-field" placeholder=" "
+                            required>
                         <label for="password">Password</label>
+                        <span class="toggle-password" onclick="togglePassword('password')">
+                            <i class="bi bi-eye" id="password-eye"></i>
+                        </span>
                     </div>
+
+
 
 
                     <button type="submit" class="btn btn-primary w-100">Login</button>
@@ -60,12 +69,31 @@
         if (window.history && window.history.pushState) {
             // Replace current history entry to prevent back navigation
             window.history.replaceState(null, null, window.location.href);
-            window.addEventListener('popstate', function(event) {
+            window.addEventListener('popstate', function (event) {
                 // If user tries to go back, replace with current page
                 window.history.replaceState(null, null, window.location.href);
             });
         }
+
+
+        /* Show password */
+        function togglePassword(fieldId) {
+            const input = document.getElementById(fieldId);
+            const eyeIcon = document.getElementById(fieldId + '-eye');
+
+            if (input.type === "password") {
+                input.type = "text";
+                eyeIcon.classList.remove('bi-eye');
+                eyeIcon.classList.add('bi-eye-slash');
+            } else {
+                input.type = "password";
+                eyeIcon.classList.remove('bi-eye-slash');
+                eyeIcon.classList.add('bi-eye');
+            }
+        }
     </script>
+
+
 </body>
 
 </html>

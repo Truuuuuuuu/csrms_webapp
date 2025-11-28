@@ -19,7 +19,7 @@
         @endphp
         @if(auth()->check() && in_array(auth()->user()->role, $allowedRoles))
             <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addRecordModal">
-                <i class="bi bi-file-earmark-plus"></i> Add Student Record
+                <i class="bi bi-file-earmark-plus"></i> Add New Student
             </button>
         @endif
 

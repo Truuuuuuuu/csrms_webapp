@@ -22,7 +22,8 @@
 
         <!-- STUDENT RECORDS -->
         <li>
-            <a href="{{ route('student.records') }}" class="{{ request()->routeIs('student.records','student_records.show') ? 'active' : '' }}">
+            <a href="{{ route('student.records') }}"
+                class="{{ request()->routeIs('student.records', 'student_records.show') ? 'active' : '' }}">
                 <i class="bi bi-clipboard-data"></i> Student Records
             </a>
         </li>
@@ -46,5 +47,16 @@
 
     </ul>
 
-    
+    {{-- Logout button container --}}
+    <div class="sidebar-logout text-center">
+        <a href="{{ route('logout') }}" class="btn btn-danger sidebar-logout-btn"
+            onclick="event.preventDefault(); confirmLogout();">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    </div>
+
 </nav>

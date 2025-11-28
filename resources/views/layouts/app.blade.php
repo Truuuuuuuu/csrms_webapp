@@ -68,6 +68,11 @@
                 }
             });
         }
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                document.getElementById('sidebar-logout-form').submit();
+            }
+        }
     </script>
     @stack('scripts')
 </body>
@@ -81,4 +86,3 @@
 <script src="{{ asset('js/success_banner.js') }}"></script>
 
 <script src="{{ asset('js/conf_del.js') }}"></script>
-

@@ -25,7 +25,9 @@
         </li>
     </ul>
 
-    <h3>{{ $record->name }}</h3>
+    <h3 style="margin-bottom: 2px;">{{ $record->name }}</h3>
+    <p style="margin-top: 0; color: gray; font-style: italic;">ID: {{ $record->id }}</p>
+
     <div class="tab-content" id="recordTabsContent">
 
         {{-- Academic Records --}}

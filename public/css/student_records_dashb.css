@@ -1,19 +1,19 @@
-/* Wrapper */
-.student-records-wrapper {
+/* Wrapper scoped to this table */
+.dashb-student-table {
     margin-top: 10px;
     padding: 0;
 }
 
 /* Table */
-.student-records-table {
+.dashb-student-table .student-records-table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 5px;
+    border-spacing: 0 5px; /* row spacing */
     font-size: 0.95rem;
 }
 
 /* Header cells */
-.student-records-table thead th {
+.dashb-student-table .student-records-table thead th {
     padding: 14px 20px;
     font-weight: 700;
     color: white;
@@ -22,86 +22,116 @@
 }
 
 /* Rounded corners for header */
-.student-records-table thead th:first-child {
+.dashb-student-table .student-records-table thead th:first-child {
     border-radius: 8px 0 0 8px;
 }
-
-.student-records-table thead th:last-child {
+.dashb-student-table .student-records-table thead th:last-child {
     border-radius: 0 8px 8px 0;
 }
 
+/* Column widths */
+.dashb-student-table .student-records-table th:nth-child(1),
+.dashb-student-table .student-records-table td:nth-child(1) { /* Student Name */
+    width: 60%;
+    max-width: 60%;
+}
+
+.dashb-student-table .student-records-table th:nth-child(2),
+.dashb-student-table .student-records-table td:nth-child(2) { /* Updated At */
+    width: 20%;
+    max-width: 20%;
+    white-space: nowrap;
+}
+
+.dashb-student-table .student-records-table th:nth-child(3),
+.dashb-student-table .student-records-table td:nth-child(3) { /* Action */
+    width: 20%;
+    max-width: 20%;
+    white-space: nowrap;
+}
+
 /* Body rows */
-.student-records-table tbody tr {
+.dashb-student-table .student-records-table tbody tr {
     background: #ffffff;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     border-radius: 8px;
 }
 
 /* Alternating rows */
-.student-records-table tbody tr:nth-child(odd) {
+.dashb-student-table .student-records-table tbody tr:nth-child(odd) {
     background: #ffffff;
 }
-
-.student-records-table tbody tr:nth-child(even) {
-    background: #dddddf;
+.dashb-student-table .student-records-table tbody tr:nth-child(even) {
+    background: #ebebec;
 }
 
 /* Rounded corners for body cells */
-.student-records-table tbody td:first-child {
+.dashb-student-table .student-records-table tbody td:first-child {
     border-radius: 8px 0 0 8px;
 }
-
-.student-records-table tbody td:last-child {
+.dashb-student-table .student-records-table tbody td:last-child {
     border-radius: 0 8px 8px 0;
 }
 
 /* Cells */
-.student-records-table tbody td {
+.dashb-student-table .student-records-table tbody td {
     padding: 14px 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* Hover effect */
-.student-records-table tbody tr:hover {
+/* Hover effect for rows */
+.dashb-student-table .student-records-table tbody tr:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
+/* Hover to show full text without changing row color */
+.dashb-student-table .student-records-table tbody td:hover {
+    overflow: visible;
+    white-space: normal;
+    position: relative;
+    z-index: 10;
+    background-color: transparent !important; /* keeps row color */
+}
+
 /* Action buttons inside table */
-.student-records-table tbody td .btn-sm {
+.dashb-student-table .student-records-table tbody td .btn-sm {
     font-size: 0.85rem;
 }
 
 /* Pagination */
-.pagination {
+.dashb-student-table .pagination {
     justify-content: center;
     margin-top: 15px;
 }
 
 /* Responsive for mobile */
 @media (max-width: 768px) {
-    .student-records-table thead {
+    .dashb-student-table .student-records-table thead {
         display: none;
     }
 
-    .student-records-table tbody tr {
+    .dashb-student-table .student-records-table tbody tr {
         display: block;
     }
 
-    .student-records-table tbody td {
+    .dashb-student-table .student-records-table tbody td {
         display: flex;
         justify-content: space-between;
         padding: 12px 16px;
     }
 
-    .student-records-table tbody td::before {
+    .dashb-student-table .student-records-table tbody td::before {
         content: attr(data-label);
         font-weight: 600;
         color: #4b5563;
     }
 }
 
-/* Success Banner */
-.success-banner {
+/* Success Banner (kept scoped if needed) */
+.dashb-student-table .success-banner {
     position: fixed;
     top: -80px;
     left: 50%;
@@ -115,8 +145,7 @@
     align-items: center;
     padding: 0.75rem 1rem;
 }
-
-.success-banner.showBanner {
+.dashb-student-table .success-banner.showBanner {
     top: 20px;
     opacity: 1;
 }

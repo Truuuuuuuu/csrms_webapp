@@ -50,7 +50,7 @@
     </script>
 
     {{-- Styled Table --}}
-    <div class="student-records-wrapper table-responsive">
+    <div class="student-records-wrapper table-responsive dashb-student-table">
         <table class="student-records-table">
             <thead>
                 <tr>

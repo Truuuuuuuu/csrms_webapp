@@ -1,15 +1,13 @@
-/* Admin Dashboard Table */
+@import 'constant.css';
+
 body {
     background-color: #F2F2F2;
 }
-
-
 
 /* cards analytics */
 .cards-container {
     display: flex;
     gap: 20px;
-    /* slightly smaller gap */
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 30px;
@@ -18,11 +16,8 @@ body {
 
 .card {
     flex: 0 0 280px;
-    /* fixed width */
     height: 150px;
-    /* fixed height if you want */
     overflow: hidden;
-    /* prevents card from expanding */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -84,11 +79,11 @@ body {
 
 /* Card colors */
 .card-blue {
-    background: #3B82F6;
+    background: #00509d;
 }
 
 .card-green {
-    background: #10B981;
+    background: #2d6a4f;
 }
 
 /* Responsive for smaller screens */
@@ -124,23 +119,19 @@ body {
     padding: 0 10px;
 }
 
-/* Table */
 .users-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 5px;
-    /* row spacing */
     font-size: 0.95rem;
 }
 
-/* Header row styled like tbody rows */
 .users-table thead tr {
-    background: #1A2A80;
+    background: var(--primary-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
     border-radius: 8px;
 }
 
-/* Header cells */
 .users-table thead th {
     padding: 14px 20px;
     font-weight: 700;
@@ -170,7 +161,7 @@ body {
 }
 
 .users-table tbody tr:nth-child(even) {
-    background: #dddddf;
+    background: #ebebec;
 }
 
 /* Rounded corners */
@@ -191,6 +182,7 @@ body {
 .users-table tbody tr:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    outline: solid 0.5px var(--primary-color);
 }
 
 /* Role badges */

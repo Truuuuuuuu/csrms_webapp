@@ -85,6 +85,7 @@
 .dashb-student-table .student-records-table tbody tr:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    
 }
 
 /* Hover to show full text without changing row color */

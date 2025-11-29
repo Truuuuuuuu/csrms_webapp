@@ -15,13 +15,15 @@
 
 <body>
     <div class="login-page d-flex">
-        <!-- Left Image -->
-        <div class="login-image d-none d-md-block"></div>
+        <!-- Left Logo -->
+        <div class="login-image d-none d-md-flex text-center"> <!-- **updated** -->
+            <img src="{{ asset('images/csrms_webapp_logo.png') }}" alt="CSRMS Logo" class="logo-img">
+        </div>
 
         <!-- Right Form -->
         <div class="login-form d-flex align-items-center justify-content-center">
             <div class="form-wrapper w-75">
-                <h1 class="text-center mb-4">CSRMS</h1>
+                <h1 class="text-center mb-4">SIGN IN</h1>
 
                 @if (session('error'))
                     <div class="alert alert-danger">
@@ -54,14 +56,12 @@
                         </span>
                     </div>
 
-
-
-
                     <button type="submit" class="btn btn-primary w-100">Login</button>
                 </form>
             </div>
         </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>

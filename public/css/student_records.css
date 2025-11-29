@@ -5,16 +5,12 @@
 
 }
 
-/* Table */
 .student-records-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 5px;
-    /* row spacing */
     font-size: 0.95rem;
 }
-
-
 
 /* Header cells */
 .student-records-table thead th {
@@ -22,7 +18,7 @@
     font-weight: 700;
     color: white;
     text-align: left;
-    background: #1A2A80;
+    background: var(--primary-color);
 }
 
 /* Rounded corners for header */
@@ -47,7 +43,7 @@
 }
 
 .student-records-table tbody tr:nth-child(even) {
-    background: #dddddf;
+    background: #ffffff;
 }
 
 /* Rounded corners for body cells */
@@ -68,6 +64,7 @@
 .student-records-table tbody tr:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    outline: solid 0.5px var(--primary-color);
 }
 
 /* Action buttons inside table */

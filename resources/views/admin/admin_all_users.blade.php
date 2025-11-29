@@ -26,7 +26,7 @@
                 <div class="position-relative flex-grow-1">
 
                     {{-- Search Input --}}
-                    <input type="text" name="search" value="{{ request('search') }}" class="form-control pe-5"
+                    <input type="text" name="search" value="{{ request('search') }}" class="form-control search-input"
                         placeholder="Search by username or role..." id="searchInput">
 
                     {{-- Clear (X) Button --}}
@@ -41,7 +41,7 @@
                 </div>
 
                 {{-- Search Button --}}
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn search-btn">
                     <i class="bi bi-search"></i> Search
                 </button>
 

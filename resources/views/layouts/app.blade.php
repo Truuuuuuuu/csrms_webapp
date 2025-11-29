@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="{{ asset('css/admin_all_users.css') }}">
     <link rel="stylesheet" href="{{ asset('css/student_records.css') }}">
     <link rel="stylesheet" href="{{ asset('css/student_records_dashb.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/constant.css') }}">
+
 
 
 </head>

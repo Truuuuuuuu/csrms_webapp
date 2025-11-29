@@ -1,4 +1,5 @@
-/* Full viewport */
+@import 'constant.css';
+
 body,
 html {
     height: 100%;
@@ -12,31 +13,30 @@ html {
     flex-direction: row;
 }
 
-/* Left image with fade on right */
+/* Left image / logo */
 .login-image {
     flex: 1.5;
-    /* equal width */
-    background: url('../images/login_bg.png') no-repeat center;
-    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
     position: relative;
 }
 
+/* Remove fade effect */
 .login-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    /* fade on right edge */
-    width: 50%;
-    /* fade width */
-    height: 100%;
-    background: linear-gradient(to right, rgba(248, 249, 250, 0), rgba(248, 249, 250, 1));
+    display: none;
+}
+
+/* Logo sizing */
+.logo-img {
+    max-width: 70%;
+    height: auto;
 }
 
 /* Right form */
 .login-form {
     flex: 1;
-    /* equal width */
     background-color: #fff;
     padding: 0 50px;
 }
@@ -47,9 +47,9 @@ html {
 
 .login-form h1 {
     margin-bottom: 30px;
-    font-size: 3rem; /* increase font size */
-    font-weight: 700; /* optional: make it bolder */
-    color: #03163e; 
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
 }
 
 /* Smaller form inputs */
@@ -64,11 +64,8 @@ html {
     padding: 10px 15px;
     font-size: 1rem;
     border: 1px solid #ced4da;
-    /* light gray border */
     border-radius: 8px;
-    /* smooth rounded corners */
     background-color: #f8f9fa;
-    /* subtle off-white background */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     outline: none;
     box-sizing: border-box;
@@ -76,25 +73,20 @@ html {
 
 /* Focus state */
 .username-field:focus {
-    border-color: #0d6efd;
-    /* primary blue border */
+    border-color: var(--primary-color);
     box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
-    /* soft blue glow */
     background-color: #fff;
-    /* white background on focus */
 }
 
 /* Placeholder styling */
 .username-field::placeholder {
     color: #6c757d;
-    /* muted gray text */
     font-style: italic;
 }
 
-/* Optional: hover effect */
+/* Hover effect */
 .username-field:hover {
-    border-color: #86b7fe;
-    /* subtle hover blue */
+    border-color: var(--primary-color);
 }
 
 /* password txtfield */
@@ -102,38 +94,31 @@ html {
     width: 100%;
     padding: 10px 15px;
     font-size: 1rem;
-    border: 1px solid #ced4da;
-    /* light gray border */
+    border: 1px solid var(--primary-color);
     border-radius: 8px;
-    /* smooth rounded corners */
     background-color: #f8f9fa;
-    /* subtle off-white background */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     outline: none;
     box-sizing: border-box;
+    padding-right: 35px;
 }
 
 /* Focus state */
 .password-field:focus {
-    border-color: #0d6efd;
-    /* primary blue border */
+    border-color: var(--primary-color);
     box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
-    /* soft blue glow */
     background-color: #fff;
-    /* white background on focus */
 }
 
 /* Placeholder styling */
 .password-field::placeholder {
     color: #6c757d;
-    /* muted gray text */
     font-style: italic;
 }
 
-/* Optional: hover effect */
+/* Hover effect */
 .password-field:hover {
-    border-color: #86b7fe;
-    /* subtle hover blue */
+    border-color: var(--primary-color);
 }
 
 .password-container {
@@ -150,14 +135,6 @@ html {
     cursor: pointer;
     color: #6c757d;
 }
-
-.password-field {
-    width: 100%;
-    padding-right: 35px; /* space for eye icon */
-}
-
-
-
 
 /* Floating label wrapper */
 .floating-label {
@@ -181,7 +158,7 @@ html {
 
 /* Focus state */
 .floating-label input:focus {
-    border-color: #0d6efd;
+    border-color: var(--primary-color);
     box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
     background-color: #fff;
 }
@@ -208,28 +185,28 @@ html {
     font-style: normal;
     background-color: #fff;
     padding: 0 4px;
-    color: #0d6efd;
+    color: var(--primary-color);
 }
 
 /* Buttons */
 .btn-primary {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-primary:hover{
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
 }
 
 /* Error msgs styling */
 .wrong-credentials,
 .wrong-password {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
     border-radius: 5px;
     padding: 10px 15px;
     font-size: 0.95rem;
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
     font-weight: 500;
-
 }
 
 .wrong-credentials {

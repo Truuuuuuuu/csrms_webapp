@@ -31,7 +31,7 @@
                 <div class="position-relative flex-grow-1">
 
                     {{-- Search Input --}}
-                    <input type="text" name="search" value="{{ request('search') }}" class="form-control pe-5"
+                    <input type="text" name="search" value="{{ request('search') }}" class="form-control search-input pe-5"
                         placeholder="Search by id, name..." id="searchInput">
 
                     {{-- Clear (X) Button --}}
@@ -46,7 +46,7 @@
                 </div>
 
                 {{-- Search Button --}}
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn search-btn">
                     <i class="bi bi-search"></i> Search
                 </button>
 
@@ -104,7 +104,7 @@
                                         class="d-inline" onsubmit="return confirm('Are you sure you want to delete this record?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm">
+                                        <button class="btn remove-btn btn-sm">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>

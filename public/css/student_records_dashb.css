@@ -18,7 +18,7 @@
     font-weight: 700;
     color: white;
     text-align: left;
-    background: #1A2A80;
+    background: var(--primary-color);
 }
 
 /* Rounded corners for header */

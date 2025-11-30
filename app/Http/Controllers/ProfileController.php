@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile page.
-     */
+    
     public function index()
     {
         $user = auth()->user();

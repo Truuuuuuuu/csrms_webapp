@@ -10,6 +10,11 @@
     <title>@yield('title', 'My App')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    <link rel="preload" href="{{ asset('images/csrms_w.png') }}" as="image">
+    <link rel="icon" type="image/png" sizes="40x40" href="{{ asset('images/favicon.png') }}">
+
+
+
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">

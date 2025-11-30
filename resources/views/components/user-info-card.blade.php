@@ -11,17 +11,6 @@
         </div>
     </div>
 
-    {{-- Logout button container --}}
-    <div class="dashboard-logout">
-        <a href="{{ route('logout') }}" class="btn-logout" onclick="event.preventDefault(); confirmLogout();">
-            <i class="bi bi-box-arrow-right"></i>
-            <span class="logout-label">Logout</span>
-        </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
-    </div>
 
 
 </div>

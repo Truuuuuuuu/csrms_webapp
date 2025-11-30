@@ -16,7 +16,7 @@
                     type="text" 
                     name="search" 
                     value="{{ request('search') }}" 
-                    class="form-control pe-5"
+                    class="form-control search-input pe-5"
                     placeholder="Search student name..."
                     id="searchInput"
                 >
@@ -33,7 +33,7 @@
                 @endif
             </div>
 
-            <button class="btn btn-primary" type="submit">
+            <button class="btn search-btn" type="submit">
                 <i class="bi bi-search"></i> Search
             </button>
 
@@ -76,7 +76,7 @@
                             <td data-label="Updated At">{{ $record->updated_at->format('Y-m-d') }}</td>
                             @if($showAction)
                                 <td data-label="Action">
-                                    <a href="{{ route('student_records.show', $record->id) }}" class="btn btn-success btn-sm">
+                                    <a href="{{ route('student_records.show', $record->id) }}" class="btn btn-primary btn-sm">
                                         <i class="bi bi-info-circle me-1"></i> View Records
                                     </a>
                                 </td>

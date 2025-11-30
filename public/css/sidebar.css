@@ -21,19 +21,17 @@ body {
 
 /* Sidebar header */
 .sidebar-header {
-    margin-top: 10vh;
     text-align: center;
-    padding: 20px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.sidebar-header h2 {
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #fff;
-    margin: 0;
+/* Logo image */
+.sidebar-logo {
+    margin-top: 5vh;
+    max-width: 200px; 
+    height: auto;
 }
+
 
 /* Menu */
 .sidebar-menu {

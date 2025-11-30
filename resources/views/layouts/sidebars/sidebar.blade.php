@@ -9,8 +9,9 @@
 
 <nav class="sidebar">
     <div class="sidebar-header">
-        <h2>CSRMS</h2>
+        <img src="{{ asset('images/csrms_w.png') }}" alt="CSRMS" class="sidebar-logo">
     </div>
+
 
     <ul class="sidebar-menu">
         <!-- DASHBOARD -->

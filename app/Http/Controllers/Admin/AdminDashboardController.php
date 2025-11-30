@@ -81,25 +81,27 @@ class AdminDashboardController extends Controller
     }
 
     // Handle change password
-    public function changePassword(Request $request, $id)
+    public function changePassword(Request $request)
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'password' => 'required|string|min:8|confirmed',
+            'change_password' => 'required|string|min:8|confirmed',
         ]);
 
-        $user = User::find($id);
-        if (!$user) {
-            return redirect()->back()->with('error', 'User not found.');
+        $user = User::findOrFail($request->user_id);
+
+        // Check if the new password is the same as the current password
+        if (Hash::check($request->change_password, $user->password)) {
+            return redirect()->back()->withErrors([
+                'change_password' => 'The new password cannot be the same as the current password.'
+            ])->withInput();
         }
 
-
-
-        $user = User::findOrFail($request->user_id);
-        $user->password = Hash::make($request->password);
+        // Update the password
+        $user->password = Hash::make($request->change_password);
         $user->save();
-
 
         return redirect()->route('admin.users')->with('success', 'Password updated successfully.');
     }
+
 }

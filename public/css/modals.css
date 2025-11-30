@@ -6,7 +6,7 @@
     margin: 1.75rem auto;
 }
 
-.add-user-modal {
+.add-student-modal {
     max-width: 1200px;
     min-width: 600px;
     max-height: 80vh;
@@ -19,7 +19,7 @@
     animation: addUserModalFadeIn 0.3s ease-out;
 }
 
-@keyframes addUserModalFadeIn {
+@keyframes addStudentModalFadeIn {
     from {
         opacity: 0;
         transform: translateY(-20px);
@@ -32,7 +32,7 @@
 }
 
 /* Header */
-.add-user-modal-header {
+.add-student-modal-header {
     display: flex;
     justify-content: flex-end;
     /* pushes content to the right */
@@ -40,7 +40,7 @@
     margin: 0;
 }
 
-.add-user-modal-close {
+.add-student-modal-close {
     font-size: 2.5rem;
     cursor: pointer;
     border: none;
@@ -48,12 +48,12 @@
     transition: color 0.2s;
 }
 
-.add-user-modal-close:hover {
+.add-student-modal-close:hover {
     color: #00509d;
 }
 
 /* Body */
-.add-user-modal-body {
+.add-student-modal-body {
     padding: 1rem 2rem 1.5rem 2rem;
     display: flex;
     flex-direction: column;
@@ -83,12 +83,12 @@
 }
 
 /* Footer */
-.add-user-modal-footer {
+.add-student-modal-footer {
     padding: 1rem 2rem 2rem 2rem;
 }
 
 /* Submit button */
-.add-user-btn {
+.add-student-btn {
     width: 100%;
     padding: 0.85rem 1rem;
     font-size: 1.125rem;
@@ -101,13 +101,13 @@
     transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
-.add-user-btn:hover {
+.add-student-btn:hover {
     background-color: #157347;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.add-user-btn:active {
+.add-student-btn:active {
     transform: translateY(0);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
@@ -120,8 +120,8 @@
         max-width: 600px;
     }
 
-    .add-user-modal-body,
-    .add-user-modal-footer {
+    .add-student-modal-body,
+    .add-student-modal-footer {
         padding: 1rem;
     }
 }
@@ -131,7 +131,6 @@
 
 /* EDIT NAME */
 
-/* Edit User Modal */
 .edit-user-modal {
     max-width: 900px;
     min-width: 500px;
@@ -262,3 +261,7 @@
         padding: 1rem;
     }
 }
+
+
+/* CHANGE PASS */
+

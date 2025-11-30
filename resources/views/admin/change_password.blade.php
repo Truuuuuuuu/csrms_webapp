@@ -37,11 +37,10 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Update Password</button>
+                        <button type="button" class="change-pass-btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="change-pass-btn btn-success">Update Password</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -49,20 +48,20 @@
 
 {{-- Change Password Modal Auto-Open Script --}}
 @push('scripts')
-    <script>
-        @if($errors->any() && old('user_id'))
-            document.addEventListener('DOMContentLoaded', function () {
-                var modal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
-                modal.show();
+<script>
+    @if($errors->any() && old('user_id'))
+        document.addEventListener('DOMContentLoaded', function () {
+            var modal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+            modal.show();
 
-                // Populate user_id hidden input with old value
-                modal.querySelector('input[name="user_id"]').value = "{{ old('user_id') }}";
+            // Populate user_id hidden input with old value
+            modal.querySelector('input[name="user_id"]').value = "{{ old('user_id') }}";
 
-                // Optionally update modal title if you also pass old('username')
-                @if(old('username'))
-                    modal.querySelector('.modal-title').textContent = "Change Password for {{ old('username') }}";
-                @endif
-                });
-        @endif
-    </script>
+            // Optionally update modal title if you also pass old('username')
+            @if(old('username'))
+                modal.querySelector('.modal-title').textContent = "Change Password for {{ old('username') }}";
+            @endif
+        });
+    @endif
+</script>
 @endpush

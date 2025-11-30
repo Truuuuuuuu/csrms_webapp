@@ -21,9 +21,9 @@ class AdminUserController extends Controller
 
         // Role filtering: superadmin and admin both cannot see other admins
         if (in_array($user->role, ['admin'])) {
-            $query->where('role', '!=', 'admin'); 
-        }elseif(in_array($user->role, ['superadmin'])) {
-            $query->where('role', '!=', 'superadmin'); 
+            $query->where('role', '!=', 'admin');
+        } elseif (in_array($user->role, ['superadmin'])) {
+            $query->where('role', '!=', 'superadmin');
         }
 
         // Optionally, you can also hide superadmins for admins:
@@ -65,10 +65,17 @@ class AdminUserController extends Controller
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'change_password' => 'required|string|min:8|confirmed', 
+            'change_password' => 'required|string|min:8|confirmed',
         ]);
 
         $user = User::find($request->user_id);
+
+        // Prevent setting the same password
+        if (Hash::check($request->change_password, $user->password)) {
+            return redirect()->back()->withErrors([
+                'change_password' => 'The new password cannot be the same as the current password.'
+            ])->withInput();
+        }
         $user->password = Hash::make($request->change_password);
         $user->save();
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\DB; 
 
 class AuthController extends Controller
 {
@@ -26,7 +27,7 @@ class AuthController extends Controller
         ]);
 
         // Find user by username
-        $user = User::where('username', $request->username)->first();
+        $user = User::where(DB::raw('BINARY username'), $request->username)->first();
 
         if (!$user) {
             // Username does not exist

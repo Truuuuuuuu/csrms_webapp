@@ -3,16 +3,16 @@
     <div class="modal-dialog modal-dialog-centered">
         <form action="{{ route('student.records.store') }}" method="POST">
             @csrf
-            <div class="modal-content shadow-lg rounded-4 border-0 p-4 add-user-modal">
+            <div class="modal-content shadow-lg rounded-4 border-0 p-4 add-student-modal">
 
                 <!-- Modal Header -->
-                <div class="add-user-modal-header">
-                    <button type="button" class="add-user-modal-close" data-bs-dismiss="modal"
+                <div class="add-student-modal-header">
+                    <button type="button" class="add-student-modal-close" data-bs-dismiss="modal"
                         aria-label="Close">&times;</button>
                 </div>
 
                 <!-- Modal Body -->
-                <div class="add-user-modal-body">
+                <div class="add-student-modal-body">
                     <div class="form-group">
                         <label for="name">Student Name</label>
                         <input type="text" name="name" class="form-control" id="name" placeholder="AGUILAR, JETHRUEL M."
@@ -26,8 +26,8 @@
                 </div>
 
                 <!-- Modal Footer -->
-                <div class="add-user-modal-footer">
-                    <button type="submit" class="btn btn-success add-user-btn">
+                <div class="add-student-modal-footer">
+                    <button type="submit" class="btn btn-success add-student-btn">
                         Add Student
                     </button>
                 </div>

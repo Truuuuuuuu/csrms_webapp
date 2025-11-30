@@ -1,25 +1,33 @@
 @foreach($records as $record)
     <div class="modal fade" id="editRecordModal{{ $record->id }}" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <form action="{{ route('student.records.updateName', $record->id) }}" method="POST" class="modal-content">
-                @csrf
-                @method('PUT')
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content edit-user-modal">
+                <form action="{{ route('student.records.updateName', $record->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Student Name</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
+                    <!-- Modal Header -->
+                    <div class="edit-user-modal-header">
+                        <h5 class="edit-user-modal-title">Edit Student Name</h5>
+                        <button type="button" class="edit-user-modal-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
 
-                <div class="modal-body">
-                    <label class="form-label">Student Name</label>
-                    <input type="text" name="name" class="form-control" value="{{ $record->name }}" required>
-                </div>
+                    <!-- Modal Body -->
+                    <div class="edit-user-modal-body">
+                        <div class="form-group">
+                            <label for="name-{{ $record->id }}">Student Name</label>
+                            <input type="text" name="name" class="form-control" id="name-{{ $record->id }}"
+                                value="{{ $record->name }}" required>
+                        </div>
+                    </div>
 
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit">Save Changes</button>
-                </div>
-
-            </form>
+                    <!-- Modal Footer -->
+                    <div class="edit-user-modal-footer">
+                        <button type="submit" class="btn btn-primary edit-user-btn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endforeach

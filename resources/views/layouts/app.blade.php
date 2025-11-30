@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="{{ asset('css/student_records.css') }}">
     <link rel="stylesheet" href="{{ asset('css/student_records_dashb.css') }}">
     <link rel="stylesheet" href="{{ asset('css/constant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modals.css') }}">
 
 
 

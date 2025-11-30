@@ -1,29 +1,37 @@
 <!-- Add Student Modal -->
 <div class="modal fade" id="addRecordModal" tabindex="-1" aria-labelledby="addRecordModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <form action="{{ route('student.records.store') }}" method="POST">
             @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addRecordModalLabel">Add Student</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content shadow-lg rounded-4 border-0 p-4 add-user-modal">
+
+                <!-- Modal Header -->
+                <div class="add-user-modal-header">
+                    <button type="button" class="add-user-modal-close" data-bs-dismiss="modal"
+                        aria-label="Close">&times;</button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Student Name</label>
+
+                <!-- Modal Body -->
+                <div class="add-user-modal-body">
+                    <div class="form-group">
+                        <label for="name">Student Name</label>
                         <input type="text" name="name" class="form-control" id="name" placeholder="AGUILAR, JETHRUEL M."
                             required>
                     </div>
-                    <div class="mb-3">
-                        <label for="uploaded_by" class="form-label">Uploaded By</label>
+                    <div class="form-group">
+                        <label for="uploaded_by">Uploaded By</label>
                         <input type="text" name="uploaded_by" class="form-control" id="uploaded_by"
                             value="{{ auth()->user()->name ?? auth()->user()->username }}" readonly>
                     </div>
+                </div>
 
+                <!-- Modal Footer -->
+                <div class="add-user-modal-footer">
+                    <button type="submit" class="btn btn-success add-user-btn">
+                        Add Student
+                    </button>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Add Student</button>
-                </div>
+
             </div>
         </form>
     </div>

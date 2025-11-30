@@ -6,28 +6,35 @@
     <div class="dashboard-container">
         @include('components.user-info-card')
 
-        <!-- Dashboard Cards -->
         <div class="cards-container">
-            <div class="card card-blue">
-                <div class="card-top">
-                    <div class="card-icon">
-                        <i class="bi bi-people-fill"></i>
-                    </div>
-                    <p class="card-number">{{ $totalUsers }}</p>
-                </div>
-                <h3 class="card-title">Total Users</h3>
-            </div>
 
-            <div class="card card-green">
-                <div class="card-top">
-                    <div class="card-icon">
-                        <i class="bi bi-journal-text"></i>
+            <a href="{{ route('admin.users.index') }}" class="card-link">
+                <div class="card card-blue">
+                    <div class="card-top">
+                        <div class="card-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <p class="card-number">{{ $totalUsers }}</p>
                     </div>
-                    <p class="card-number">{{ $totalStudents }}</p>
+                    <h3 class="card-title">Total Users</h3>
                 </div>
-                <h3 class="card-title">Total Student Records</h3>
-            </div>
+            </a>
+
+            <a href="{{ route('student.records') }}" class="card-link">
+                <div class="card card-green">
+                    <div class="card-top">
+                        <div class="card-icon">
+                            <i class="bi bi-journal-text"></i>
+                        </div>
+                        <p class="card-number">{{ $totalStudents }}</p>
+                    </div>
+                    <h3 class="card-title">Total Student Records</h3>
+                </div>
+            </a>
+
         </div>
+
+
 
 
 
@@ -57,7 +64,7 @@
         </div>
 
     </div>
-    
+
     <x-pagination :paginator="$users" />
 
 @endsection

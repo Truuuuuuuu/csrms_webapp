@@ -2,11 +2,13 @@
 .user-info-card {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 50%;
     padding: 15px 20px;
     margin-bottom: 20px;
     transition: transform 0.2s ease;
     box-sizing: border-box;
+
+
 }
 
 .user-info-card:hover {
@@ -25,7 +27,8 @@
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background-color: #0d6efd; /* default */
+    background-color: #0d6efd;
+    /* default */
     color: #fff;
     display: flex;
     align-items: center;
@@ -36,10 +39,21 @@
 }
 
 /* Role Colors */
-.role-avatar.superadmin { background-color: #f91427; }
-.role-avatar.admin { background-color: #3b82f6; }
-.role-avatar.editor { background-color: #10b981; }
-.role-avatar.viewer { background-color: #8b5cf6; }
+.role-avatar.superadmin {
+    background-color: #f91427;
+}
+
+.role-avatar.admin {
+    background-color: #3b82f6;
+}
+
+.role-avatar.editor {
+    background-color: #10b981;
+}
+
+.role-avatar.viewer {
+    background-color: #8b5cf6;
+}
 
 /* User details */
 .user-details h2 {
@@ -58,17 +72,20 @@
 
 /* Dashboard logout button container */
 .dashboard-logout {
-    margin-left: auto;  /* pushes it to the right */
+    margin-left: auto;
+    /* pushes it to the right */
     display: flex;
     align-items: center;
-    gap: 5px;           /* optional spacing between icon and label */
+    gap: 5px;
+    /* optional spacing between icon and label */
 }
 
 /* Logout button */
 .btn-logout {
     display: flex;
     align-items: center;
-    gap: 0; /* no gap initially */
+    gap: 0;
+    /* no gap initially */
     color: #ec1c1c;
     background-color: transparent;
     border: none;
@@ -82,8 +99,10 @@
 
 /* Initial icon size */
 .btn-logout i {
-    font-size: 1.8rem; /* larger icon for visibility */
-    transition: font-size 0.3s ease; /* smooth if you want minor animations */
+    font-size: 1.8rem;
+    /* larger icon for visibility */
+    transition: font-size 0.3s ease;
+    /* smooth if you want minor animations */
 }
 
 /* Hide the text initially */
@@ -105,5 +124,6 @@
 .btn-logout:hover .logout-label {
     opacity: 1;
     width: auto;
-    margin-left: 8px; /* space between icon and label */
+    margin-left: 8px;
+    /* space between icon and label */
 }
